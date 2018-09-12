@@ -7,61 +7,62 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
+    [Serializable]
     public class Rule
     {
-        private string decomposition = null;
-        private List<string> reassembly = null;
-        private bool memorize = false;  // TODO - Implement this feature.  --Kris
+        private string Decomposition = null;
+        private List<string> Reassembly = null;
+        private bool Memorize = false;  // TODO - Implement this feature.  --Kris
 
         public Rule(string decomposition, string reassembly, bool memorize = false)
         {
-            this.decomposition = decomposition;
-            this.reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
-            this.memorize = memorize;
+            this.Decomposition = decomposition;
+            this.Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
+            this.Memorize = memorize;
         }
 
         public Rule(string decomposition, List<string> reassembly, bool memorize = false)
         {
-            this.decomposition = decomposition;
-            this.reassembly = reassembly;
-            this.memorize = memorize;
+            this.Decomposition = decomposition;
+            this.Reassembly = reassembly;
+            this.Memorize = memorize;
         }
 
         public Rule() { }
 
         public string GetDecomposition()
         {
-            return decomposition;
+            return Decomposition;
         }
 
         public void SetDecomposition(string decomposition)
         {
-            this.decomposition = decomposition;
+            this.Decomposition = decomposition;
         }
 
         public List<string> GetReassembly()
         {
-            return reassembly;
+            return Reassembly;
         }
 
         public void SetReassembly(string reassembly)
         {
-            this.reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
+            this.Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
         }
 
         public void SetReassembly(List<string> reassembly)
         {
-            this.reassembly = reassembly;
+            this.Reassembly = reassembly;
         }
 
         public bool GetMemorize()
         {
-            return memorize;
+            return Memorize;
         }
 
         public void SetMemorize(bool memorize)
         {
-            this.memorize = memorize;
+            this.Memorize = memorize;
         }
     }
 }

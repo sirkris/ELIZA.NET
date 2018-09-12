@@ -6,61 +6,62 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
+    [Serializable]
     public class Pair
     {
-        private string word = null;
-        private string script = null;
-        private string inverse = null;
-        private bool bidirectional = false;
+        private string Word = null;
+        private string Script = null;
+        private string Inverse = null;
+        private bool Bidirectional = false;
 
         public Pair(string word, string script, string inverse, bool bidirectional = false)
         {
-            this.word = word;
-            this.script = script;
-            this.inverse = inverse;
-            this.bidirectional = bidirectional;
+            this.Word = word;
+            this.Script = script;
+            this.Inverse = inverse;
+            this.Bidirectional = bidirectional;
         }
 
         public Pair() { }
 
         public string GetWord()
         {
-            return word;
+            return Word;
         }
 
         public void SetWord(string word)
         {
-            this.word = word;
+            this.Word = word;
         }
 
         public string GetScript()
         {
-            return script;
+            return Script;
         }
 
         public void SetScript(string script)
         {
-            this.script = script;
+            this.Script = script;
         }
 
         public string GetInverse()
         {
-            return inverse;
+            return Inverse;
         }
 
         public void SetInverse(string inverse)
         {
-            this.inverse = inverse;
+            this.Inverse = inverse;
         }
 
         public bool GetBidirectional()
         {
-            return bidirectional;
+            return Bidirectional;
         }
 
         public void SetBidirectional(bool bidirectional)
         {
-            this.bidirectional = bidirectional;
+            this.Bidirectional = bidirectional;
         }
     }
 }

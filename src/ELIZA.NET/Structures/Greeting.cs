@@ -6,37 +6,38 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
+    [Serializable]
     public class Greeting
     {
-        private string greeting = null;
-        private string script = null;
+        private string Greeting = null;
+        private string Script = null;
 
         public Greeting(string greeting, string script)
         {
-            this.greeting = greeting;
-            this.script = script;
+            this.Greeting = greeting;
+            this.Script = script;
         }
 
         public Greeting() { }
 
         public string GetGreeting()
         {
-            return greeting;
+            return Greeting;
         }
 
         public void SetGreeting(string greeting)
         {
-            this.greeting = greeting;
+            this.Greeting = greeting;
         }
 
         public string GetScript()
         {
-            return script;
+            return Script;
         }
 
         public void SetScript(string script)
         {
-            this.script = script;
+            this.Script = script;
         }
     }
 }

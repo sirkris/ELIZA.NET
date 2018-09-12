@@ -6,61 +6,62 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
+    [Serializable]
     public class Keyword
     {
-        private string word = null;
-        private string script = null;
-        private int rank = 0;
-        private List<Rule> rules = null;
+        private string Word = null;
+        private string Script = null;
+        private int Rank = 0;
+        private List<Rule> Rules = null;
 
         public Keyword(string word, string script, int rank, List<Rule> rules)
         {
-            this.word = word;
-            this.script = script;
-            this.rank = rank;
-            this.rules = rules;
+            this.Word = word;
+            this.Script = script;
+            this.Rank = rank;
+            this.Rules = rules;
         }
 
         public Keyword() { }
 
         public string GetWord()
         {
-            return word;
+            return Word;
         }
 
         public void SetWord(string word)
         {
-            this.word = word;
+            this.Word = word;
         }
 
         public string GetScript()
         {
-            return script;
+            return Script;
         }
 
         public void SetScript(string script)
         {
-            this.script = script;
+            this.Script = script;
         }
 
         public int GetRank()
         {
-            return rank;
+            return Rank;
         }
 
         public void SetRank(int rank)
         {
-            this.rank = rank;
+            this.Rank = rank;
         }
 
         public List<Rule> GetRules()
         {
-            return rules;
+            return Rules;
         }
 
         public void SetRules(List<Rule> rules)
         {
-            this.rules = rules;
+            this.Rules = rules;
         }
     }
 }

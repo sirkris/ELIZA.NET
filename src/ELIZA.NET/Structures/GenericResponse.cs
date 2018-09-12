@@ -6,37 +6,38 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
+    [Serializable]
     public class GenericResponse
     {
-        private string response = null;
-        private string script = null;
+        private string Response = null;
+        private string Script = null;
 
         public GenericResponse(string response, string script)
         {
-            this.response = response;
-            this.script = script;
+            this.Response = response;
+            this.Script = script;
         }
 
         public GenericResponse() { }
 
         public string GetResponse()
         {
-            return response;
+            return Response;
         }
 
         public void SetResponse(string response)
         {
-            this.response = response;
+            this.Response = response;
         }
 
         public string GetScript()
         {
-            return script;
+            return Script;
         }
 
         public void SetScript(string script)
         {
-            this.script = script;
+            this.Script = script;
         }
     }
 }
