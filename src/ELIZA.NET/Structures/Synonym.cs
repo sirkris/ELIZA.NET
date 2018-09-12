@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,8 +10,13 @@ namespace ELIZA.NET.Structures
     [Serializable]
     public class Synonym
     {
+        [JsonProperty("word")]
         private string Word = null;
+
+        [JsonProperty("script")]
         private string Script = null;
+
+        [JsonProperty("aliases")]
         private List<string> Aliases = null;
 
         public Synonym(string word, string script, string aliases)

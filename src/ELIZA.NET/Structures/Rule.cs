@@ -10,8 +10,13 @@ namespace ELIZA.NET.Structures
     [Serializable]
     public class Rule
     {
+        [JsonProperty("decomposition")]
         private string Decomposition = null;
+
+        [JsonProperty("reassembly")]
         private List<string> Reassembly = null;
+
+        [JsonProperty("memorize")]
         private bool Memorize = false;  // TODO - Implement this feature.  --Kris
 
         public Rule(string decomposition, string reassembly, bool memorize = false)

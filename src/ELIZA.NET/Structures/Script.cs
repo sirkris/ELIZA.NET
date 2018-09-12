@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +11,25 @@ namespace ELIZA.NET.Structures
     public class Script
     {
         // Note - Setting default values on properties inline requires C# 6+, which I don't have at the moment, so we'll just do our getters/setters the old-fashioned way for now.  --Kris
+        [JsonProperty("genericResponses")]
         private List<GenericResponse> GenericResponses = null;
+
+        [JsonProperty("goodbyes")]
         private List<Goodbye> Goodbyes = null;
+
+        [JsonProperty("greetings")]
         private List<Greeting> Greetings = null;
+
+        [JsonProperty("pairs")]
         private List<Pair> Pairs = null;
+
+        [JsonProperty("synonyms")]
         private List<Synonym> Synonyms = null;
+
+        [JsonProperty("transformations")]
         private List<Transformation> Transformations = null;
+
+        [JsonProperty("keywords")]
         private Dictionary<string, Keyword> Keywords = null;
 
         public Script(List<GenericResponse> genericResponses, List<Goodbye> goodbyes, List<Greeting> greetings,
