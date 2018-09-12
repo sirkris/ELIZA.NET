@@ -10,16 +10,16 @@ namespace ELIZA.NET.Structures
     [Serializable]
     public class Keyword
     {
-        [JsonProperty("genericResponses")]
+        [JsonProperty("word")]
         private string Word = null;
 
-        [JsonProperty("genericResponses")]
+        [JsonProperty("script")]
         private string Script = null;
 
-        [JsonProperty("genericResponses")]
+        [JsonProperty("rank")]
         private int Rank = 0;
 
-        [JsonProperty("genericResponses")]
+        [JsonProperty("rules")]
         private List<Rule> Rules = null;
 
         public Keyword(string word, string script, int rank, List<Rule> rules)
