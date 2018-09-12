@@ -32,6 +32,8 @@ namespace ELIZA.NET.Structures
         [JsonProperty("keywords")]
         private Dictionary<string, Keyword> Keywords = null;
 
+        public string scriptName = null;
+
         public Script(List<GenericResponse> genericResponses, List<Goodbye> goodbyes, List<Greeting> greetings,
             List<Pair> pairs, List<Synonym> synonyms, List<Transformation> transformations, Dictionary<string, Keyword> keywords)
         {
@@ -42,6 +44,9 @@ namespace ELIZA.NET.Structures
             this.Synonyms = synonyms;
             this.Transformations = transformations;
             this.Keywords = keywords;
+
+            // TODO - Modify structure so that script name is top-level in JSON (and remove redundant entries).  --Kris
+            this.scriptName = this.GenericResponses[0].GetScript();
         }
 
         public Script(List<GenericResponse> genericResponses, List<Goodbye> goodbyes, List<Greeting> greetings,
