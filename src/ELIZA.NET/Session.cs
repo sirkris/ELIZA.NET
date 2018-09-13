@@ -13,6 +13,8 @@ namespace ELIZA.NET
     /// </summary>
     private class Session
     {
+        private Random rand = null;
+
         /// <summary>
         /// The ELIZA script that will be bound to this session.
         /// </summary>
@@ -33,7 +35,7 @@ namespace ELIZA.NET
 
         // Variables used for parsing the input and formulating a response.  --Kris
         private string LastInput = null;
-        private Dictionary<int, string> LastKeyStack = null;
+        private SortedDictionary<int, List<string>> LastKeyStack = null;
         private Rule LastRule = null;
         private MatchCollection LastParts = null;
 
@@ -41,6 +43,8 @@ namespace ELIZA.NET
         {
             SetScript(script);
             ResetHistory();
+
+            this.rand = new Random();
         }
 
         /// <summary>
@@ -85,6 +89,50 @@ namespace ELIZA.NET
         /// <returns></returns>
         private string ProcessRule()
         {
+            return InvertPairs(GetReassembly());
+        }
+
+        /// <summary>
+        /// Gets the reassembly string to use in formulating ELIZA's response.
+        /// </summary>
+        /// <returns>A randomly-chosen reassembly string from the last rule.</returns>
+        private string GetReassembly()
+        {
+            string reassembly = LastRule.GetReassembly()[rand.Next(LastRule.GetReassembly().Count())];
+
+            // If reassembly string is of the form "GOTO <keyword>" (keyword MUST have a matching decomposition rule!), that keyword's reassembly will be substituted.  --Kris
+            if (reassembly.Substring(0, 5).Equals("GOTO "))
+            {
+                if (CheckRule(reassembly.Substring(5)))
+                {
+                    GetReassembly();
+                }
+                else
+                {
+                    throw new InvalidOperationException("GOTO statement in reassembly rule leads to unmatched decomposition rule!  This needs to be fixed in the script.");
+                }
+            }
+
+            return reassembly;
+        }
+
+        private string InvertPairs(string reassembly)
+        {
+
+        }
+
+        private List<string> SanitizePairs()
+        {
+
+        }
+
+        private string ReplacePart(string word, string inverse, string part)
+        {
+            return Regex.Replace(part, ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase);
+        }
+
+        private string ApplyParts(string reassembly)
+        {
 
         }
 
@@ -94,14 +142,20 @@ namespace ELIZA.NET
         /// <param name="s">The trimmed input string.</param>
         private void ProcessInput(string s)
         {
-            // Apply transformations.  --Kris
+            // Add to session history.  --Kris
+            History.Add(s);
 
+            // Apply transformations.  --Kris
+            foreach (Transformation transformation in Script.GetTransformations())
+            {
+                foreach (string alias in transformation.GetAliases())
+                {
+                    s = Regex.Replace(s, alias, transformation.GetWord(), RegexOptions.IgnoreCase);
+                }
+            }
 
             // Remove all punctuation/symbols.  --Kris
-
-
-            // Add to session history.  --Kris
-
+            this.LastInput = Regex.Replace(s, @"[^\da-z ]", "", RegexOptions.IgnoreCase);
         }
 
         /// <summary>
@@ -109,16 +163,62 @@ namespace ELIZA.NET
         /// </summary>
         private void BuildKeyStack()
         {
-
+            this.LastKeyStack = new SortedDictionary<int, List<string>>();
+            foreach (string word in LastInput.Split(' '))
+            {
+                if (Script.GetKeywords().ContainsKey(word.ToLower())
+                    && !LastKeyStack.ContainsKey(Script.GetKeywords()[word.ToLower()].GetRank()))
+                {
+                    LastKeyStack.Add(Script.GetKeywords()[word.ToLower()].GetRank(), new List<string>());
+                }
+            }
         }
 
         /// <summary>
         /// Scan the keystack for a matching rule, starting with the highest rank.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Whether or not the rule exists.</returns>
         private bool GetRule()
         {
+            foreach (KeyValuePair<int, List<string>> pair in LastKeyStack.Reverse())
+            {
+                foreach (string keyword in pair.Value)
+                {
+                    if (CheckRule(keyword))
+                    {
+                        return true;
+                    }
+                }
+            }
 
+            return false;
+        }
+
+        /// <summary>
+        /// Check to see if any of keyword's decomposition rules applies to the last input.  If so, deconstruct into matched parts.
+        /// </summary>
+        /// <param name="keyword">A keyword defined in the bound ELIZA script.</param>
+        /// <returns>Whether or not any of the keyword's decomposition rules matched the last input.</returns>
+        private bool CheckRule(string keyword)
+        {
+            foreach (Rule rule in Script.GetKeywords()[keyword].GetRules())
+            {
+                // If decomposition rule contains '@' alias, match against all corresponding entries in the synonyms table.  --Kris
+                foreach (Synonym synonym in Script.GetSynonyms())
+                {
+                    rule.SetDecomposition(rule.GetDecomposition().Replace('@' + synonym.GetWord(), synonym.GetWord() + '|' + String.Join(@"|", synonym.GetAliases().ToArray())));
+                }
+
+                // Match the decomposition rule against the last input and capture matched parts.  --Kris
+                MatchCollection matches = Regex.Matches(LastInput, rule.GetDecomposition(), RegexOptions.IgnoreCase);
+                if (matches.Count > 0)
+                {
+                    this.LastRule = rule;
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
