@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ELIZA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptHandler.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Structures\GenericResponse.cs" />
     <Compile Include="Structures\Goodbye.cs" />
     <Compile Include="Structures\Greeting.cs" />
