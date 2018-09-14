@@ -123,7 +123,7 @@ namespace ELIZA.NET
 
         public void LoadFromJSONData(string json)
         {
-            this.script = JsonConvert.DeserializeObject<Script>(json);
+            this.script = JsonConvert.DeserializeObject<Script>(json.Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", ""));
         }
 
         public void LoadFromAPI(string URI)

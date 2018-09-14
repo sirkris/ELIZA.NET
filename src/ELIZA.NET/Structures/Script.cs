@@ -62,6 +62,11 @@ namespace ELIZA.NET.Structures
             this.Synonyms = synonyms;
             this.Transformations = transformations;
             this.Keywords = IndexKeywords(keywords);
+
+            // TODO - Modify structure so that script name is top-level in JSON (and remove redundant entries).  --Kris
+            this.scriptName = this.GenericResponses[0].GetScript();
+
+            this.rand = new Random();
         }
 
         public Script() { }
@@ -77,6 +82,21 @@ namespace ELIZA.NET.Structures
             return res;
         }
 
+        private int GetRand(int maxValue)
+        {
+            return GetRand(0, maxValue);
+        }
+
+        private int GetRand(int minValue, int maxValue)
+        {
+            if (rand == null)
+            {
+                rand = new Random();
+            }
+
+            return rand.Next(minValue, maxValue);
+        }
+
         public List<GenericResponse> GetGenericResponses()
         {
             return GenericResponses;
@@ -84,7 +104,7 @@ namespace ELIZA.NET.Structures
 
         public GenericResponse GetRandomGenericResponse()
         {
-            return GenericResponses[rand.Next(GenericResponses.Count)];
+            return GenericResponses[GetRand(GenericResponses.Count)];
         }
 
         public void SetGenericResponses(List<GenericResponse> genericResponses)
@@ -99,7 +119,7 @@ namespace ELIZA.NET.Structures
 
         public Goodbye GetRandomGoodbye()
         {
-            return Goodbyes[rand.Next(Goodbyes.Count)];
+            return Goodbyes[GetRand(Goodbyes.Count)];
         }
 
         public void SetGoodbyes(List<Goodbye> goodbyes)
@@ -114,7 +134,7 @@ namespace ELIZA.NET.Structures
 
         public Greeting GetRandomGreeting()
         {
-            return Greetings[rand.Next(Greetings.Count)];
+            return Greetings[GetRand(Greetings.Count)];
         }
 
         public void SetGreetings(List<Greeting> greetings)
