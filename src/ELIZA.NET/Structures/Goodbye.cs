@@ -43,5 +43,10 @@ namespace ELIZA.NET.Structures
         {
             this.Script = script;
         }
+
+        public string ToString()
+        {
+            return Message;
+        }
     }
 }

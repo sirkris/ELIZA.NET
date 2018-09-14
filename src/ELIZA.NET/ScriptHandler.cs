@@ -10,12 +10,8 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET
 {
-    public class ScriptHandler
+    private class ScriptHandler
     {
-        private const int SOURCE_REGISTRY = 0;
-        private const int SOURCE_JSON = 1;
-        private const int SOURCE_API = 2;
-
         private Dictionary<string, RegistryKey> keys = new Dictionary<string, RegistryKey>
         {
             { "software", Registry.CurrentUser.OpenSubKey( "Software", true ) }
@@ -23,7 +19,7 @@ namespace ELIZA.NET
 
         private Script script = null;  // TODO - Use public get/private set with default value after upgrading VS.  --Kris
 
-        public ScriptHandler(bool autoLoad = true, int source = SOURCE_REGISTRY, string sourceParam = "DOCTOR")
+        public ScriptHandler(bool autoLoad = Constants.DEFAULT_AUTOLOAD, int source = Constants.DEFAULT_SOURCE, string sourceParam = Constants.DEFAULT_SCRIPT)
         {
             keys.Add("app", keys["software"].CreateSubKey("ELIZA.NET"));
             keys.Add("scripts", keys["app"].CreateSubKey("Scripts"));
@@ -36,13 +32,13 @@ namespace ELIZA.NET
                 {
                     default:
                         throw new ArgumentException("Unrecognized source passed to constructor.");
-                    case SOURCE_REGISTRY:
+                    case Constants.SOURCE_REGISTRY:
                         LoadFromRegistry(sourceParam);
                         break;
-                    case SOURCE_JSON:
+                    case Constants.SOURCE_JSON:
                         LoadFromJSON(sourceParam);
                         break;
-                    case SOURCE_API:
+                    case Constants.SOURCE_API:
                         LoadFromAPI(sourceParam);
                         break;
                 }
