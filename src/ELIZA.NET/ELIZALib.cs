@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET
 {
-    public class ELIZA
+    public class ELIZALib
     {
         public ScriptHandler ScriptHandler
         {
@@ -20,7 +20,7 @@ namespace ELIZA.NET
             private set;
         }
 
-        public ELIZA(bool autoLoad = Constants.DEFAULT_AUTOLOAD, int source = Constants.DEFAULT_SOURCE, string sourceParam = Constants.DEFAULT_SCRIPT)
+        public ELIZALib(bool autoLoad = Constants.DEFAULT_AUTOLOAD, int source = Constants.DEFAULT_SOURCE, string sourceParam = Constants.DEFAULT_SCRIPT)
         {
             this.ScriptHandler = new ScriptHandler(autoLoad, source, sourceParam);
             this.Session = new Session(ScriptHandler.GetScript());

@@ -11,7 +11,7 @@ namespace ELIZA.NET
     /// <summary>
     /// Your session with the great ELIZA.
     /// </summary>
-    private class Session
+    public class Session
     {
         private Random rand = null;
 

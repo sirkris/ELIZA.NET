@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ELIZA.NET
 {
-    private class ScriptHandler
+    public class ScriptHandler
     {
         private Dictionary<string, RegistryKey> keys = new Dictionary<string, RegistryKey>
         {
