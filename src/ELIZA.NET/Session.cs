@@ -86,7 +86,7 @@ namespace ELIZA.NET
         /// <summary>
         /// Invert pairs and reassemble.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Reassembly with inverted pairs.</returns>
         private string ProcessRule()
         {
             return InvertPairs(GetReassembly());
@@ -116,24 +116,86 @@ namespace ELIZA.NET
             return reassembly;
         }
 
+        /// <summary>
+        /// Replace parts with their inverse counterparts as defined in the script.  For example, "I" becomes "you" and "was" becomes "were".
+        /// </summary>
+        /// <param name="reassembly">ELIZA's draft response.</param>
+        /// <returns>ELIZA's partially processed response.</returns>
         private string InvertPairs(string reassembly)
         {
+            List<string> parts = new List<string>();
 
+            // I know how this looks, but it's actually just O(m * n) because we're still doing the same number of iterations we would if going through the original pairs list.  --Kris
+            foreach (KeyValuePair<int, List<Pair>> pairs in SanitizePairs().Reverse())
+            {
+                foreach (Pair pair in pairs.Value)
+                {
+                    for (int i = 0; i < LastParts.Count; i++)
+                    {
+                        string part = LastParts[i].Value;
+                        part = ReplacePart(pair.GetWord(), pair.GetInverse(), part);
+
+                        if (pair.GetBidirectional()
+                            && part.Equals(LastParts[i].Value))
+                        {
+                            part = ReplacePart(pair.GetInverse(), pair.GetWord(), part);
+                        }
+
+                        parts.Add(part);
+                    }
+                }
+            }
+
+            return ApplyParts(reassembly, parts);
         }
 
-        private List<string> SanitizePairs()
+        /// <summary>
+        /// Reorder pairs by number of words so that longer phrases will always be matched first.
+        /// </summary>
+        /// <returns>Pairs reordered into a nested sorted dictionary.  The actual number of pairs remains the same.</returns>
+        private SortedDictionary<int, List<Pair>> SanitizePairs()
         {
+            SortedDictionary<int, List<Pair>> pairs = new SortedDictionary<int, List<Pair>>();
+            foreach (Pair pair in Script.GetPairs())
+            {
+                int i = pair.GetWord().Split(' ').Count();
+                if (!pairs.ContainsKey(i))
+                {
+                    pairs.Add(i, new List<Pair>());
+                }
 
+                pairs[i].Add(pair);
+            }
+
+            return pairs;
         }
 
+        /// <summary>
+        /// Replace a word with its inverse in a given part.
+        /// </summary>
+        /// <param name="word">The word to be replaced.</param>
+        /// <param name="inverse">The replacement word.</param>
+        /// <param name="part">The part to which the replacement is being applied.</param>
+        /// <returns>The modified part.</returns>
         private string ReplacePart(string word, string inverse, string part)
         {
             return Regex.Replace(part, ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase);
         }
 
-        private string ApplyParts(string reassembly)
+        /// <summary>
+        /// Apply the user input parts to the reassembly.
+        /// </summary>
+        /// <param name="reassembly">ELIZA's partially processed response.</param>
+        /// <param name="parts">The modified user input parts to be applied.</param>
+        /// <returns>ELIZA's fully processed response.</returns>
+        private string ApplyParts(string reassembly, List<string> parts)
         {
+            for (int i = 0; i < parts.Count(); i++)
+            {
+                reassembly = reassembly.Replace('$' + (i + 1).ToString(), parts[i].Trim());
+            }
 
+            return reassembly;
         }
 
         /// <summary>
