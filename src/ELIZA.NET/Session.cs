@@ -44,7 +44,14 @@ namespace ELIZA.NET
             SetScript(script);
             ResetHistory();
 
+            this.Script.SetSynonyms(SortLength(Script.GetSynonyms()));
+
             this.rand = new Random();
+        }
+
+        private List<Synonym> SortLength(List<Synonym> synonyms)
+        {
+            return synonyms.OrderByDescending(x => x.GetWord()).ToList();
         }
 
         /// <summary>
@@ -101,7 +108,8 @@ namespace ELIZA.NET
             string reassembly = LastRule.GetReassembly()[rand.Next(LastRule.GetReassembly().Count())];
 
             // If reassembly string is of the form "GOTO <keyword>" (keyword MUST have a matching decomposition rule!), that keyword's reassembly will be substituted.  --Kris
-            if (reassembly.Substring(0, 5).Equals("GOTO "))
+            if (reassembly.Length > 5 
+                && reassembly.Substring(0, 5).Equals("GOTO "))
             {
                 if (CheckRule(reassembly.Substring(5)))
                 {
@@ -126,24 +134,26 @@ namespace ELIZA.NET
             List<string> parts = new List<string>();
 
             // I know how this looks, but it's actually just O(m * n) because we're still doing the same number of iterations we would if going through the original pairs list.  --Kris
-            foreach (KeyValuePair<int, List<Pair>> pairs in SanitizePairs().Reverse())
+            for (int i = 0; i < LastParts[0].Groups.Count; i++)
             {
-                foreach (Pair pair in pairs.Value)
+                string part = LastParts[0].Groups[i].Value;
+
+                foreach (KeyValuePair<int, List<Pair>> pairs in SanitizePairs().Reverse())
                 {
-                    for (int i = 0; i < LastParts[0].Groups.Count; i++)
+                    foreach (Pair pair in pairs.Value)
                     {
-                        string part = LastParts[0].Groups[i].Value;
+                        string origPart = part;
                         part = ReplacePart(pair.GetWord(), pair.GetInverse(), part);
 
                         if (pair.GetBidirectional()
-                            && part.Equals(LastParts[0].Groups[i].Value))
+                            && part.Equals(origPart))
                         {
                             part = ReplacePart(pair.GetInverse(), pair.GetWord(), part);
                         }
-
-                        parts.Add(part);
                     }
                 }
+
+                parts.Add(part);
             }
 
             return ApplyParts(reassembly, parts);
@@ -179,7 +189,7 @@ namespace ELIZA.NET
         /// <returns>The modified part.</returns>
         private string ReplacePart(string word, string inverse, string part)
         {
-            return Regex.Replace(part, ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase);
+            return Regex.Replace(' ' + part + ' ', ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase).Trim();
         }
 
         /// <summary>
