@@ -37,7 +37,7 @@ namespace ELIZA.NET.Structures
 
         public string GetDecomposition()
         {
-            return Decomposition;
+            return Decomposition.Replace("_____", "\\");
         }
 
         public void SetDecomposition(string decomposition)

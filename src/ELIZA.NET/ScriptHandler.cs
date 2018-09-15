@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ELIZA.NET
@@ -123,7 +124,8 @@ namespace ELIZA.NET
 
         public void LoadFromJSONData(string json)
         {
-            this.script = JsonConvert.DeserializeObject<Script>(json.Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", ""));
+            // JSON.NET does not seem to do well with embedded regex (things like word boundaries get parsed as JSON escape sequences).  Messy but effective workaround right here (TODO - Cleanup).  --Kris
+            this.script = JsonConvert.DeserializeObject<Script>(Regex.Replace(json, @"(\\)(?=[a-z])", "_____").Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", ""));
         }
 
         public void LoadFromAPI(string URI)

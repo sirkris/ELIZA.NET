@@ -15,6 +15,8 @@ namespace RunTests
             {
                 Console.WriteLine("Usage: RunTests.exe <test script path> <script source> <script param>");
                 Console.WriteLine();
+                Console.WriteLine(@"Example: RunTests.exe ..\..\..\..\..\scripts\DOCTOR\tests\doctorTest.json json ..\..\..\..\..\scripts\DOCTOR\DOCTOR.json");
+                Console.WriteLine();
                 Console.WriteLine("Test script path must point to a JSON file with the correct format.");
                 Console.WriteLine("Script source can be one of:  registry (default), json, or api.");
                 Console.WriteLine("If script source is registry, script param arg is ignored.");
