@@ -49,8 +49,6 @@ namespace ELIZA
                 && !userInput.Trim().ToLower().Equals("farewell")
                 && !userInput.Trim().ToLower().Equals("exit")
                 && !userInput.Trim().ToLower().Equals("quit"));
-
-            Console.WriteLine(elizaWrapper.stop());
         }
     }
 }
