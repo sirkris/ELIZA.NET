@@ -1,0 +1,1114 @@
+{
+	"script":"DOCTOR",
+	"test":
+	[
+		{
+			"input":"",
+			"expected":
+			[
+				"How do you do. Please tell me your problems.",
+				"Is something troubling you?",
+				"Please tell me what's been bothering you."
+			]
+		},
+		{
+			"input":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"expected":
+			[
+				"Do you feel strongly about discussing such things?",
+				"Does talking about this bother you?",
+				"I'm not sure I understand you fully.",
+				"Please go on.",
+				"Tell me more about that.",
+				"That is interesting.  Please continue.",
+				"What does that suggest to you?"
+			]
+		},
+		{
+			"input":"Goodbye.",
+			"expected":
+			[
+				"Goodbye.  I'm looking forward to our next session.",
+				"Goodbye.  It was nice talking to you.",
+				"Goodbye.  This was really a nice talk.",
+				"Maybe we could discuss this moreover in our next session?   Goodbye.",
+				"This was a good session, wasn't it -- but time is over now.   Goodbye."
+			]
+		},
+		{
+			"input":"I'm worried!",
+			"expected":
+			[
+				"Is it because you are worried that you came to me?",
+				"How long have you been worried?",
+				"Do you believe it is normal to be worried?",
+				"Do you enjoy being worried?",
+				"Do you know anyone else who is worried?"
+			]
+		},
+		{
+			"input":"I like to steal things.",
+			"expected":
+			[
+				"You say you like to steal things?",
+				"Can you elaborate on that?",
+				"Do you say you like to steal things for some special reason?",
+				"That's quite interesting."
+			]
+		},
+		{
+			"input":"I am happy!",
+			"expected":
+			[
+				"How have I helped you to be happy?",
+				"Has your treatment made you happy?",
+				"What makes you happy just now?",
+				"Can you explain why you are suddenly happy?"
+			]
+		},
+		{
+			"input":"I am sad.",
+			"expected":
+			[
+				"I am sorry to hear you are sad.",
+				"Do you think coming here will help you not to be sad?",
+				"I'm sure it's not pleasant to be sad.",
+				"Can you explain what made you sad?"
+			]
+		},
+		{
+			"input":"I'm omnipotent.",
+			"expected":
+			[
+				"Is it because you are omnipotent that you came to me?",
+				"How long have you been omnipotent?",
+				"Do you believe it is normal to be omnipotent?",
+				"Do you enjoy being omnipotent?",
+				"Do you know anyone else who is omnipotent?"
+			]
+		},
+		{
+			"input":"I'm impotent.",
+			"expected":
+			[
+				"Is it because you are impotent that you came to me?",
+				"How long have you been impotent?",
+				"Do you believe it is normal to be impotent?",
+				"Do you enjoy being impotent?",
+				"Do you know anyone else who is impotent?"
+			]
+		},
+		{
+			"input":"You are artificial.",
+			"expected":
+			[
+				"What makes you think I am artificial?",
+				"Does it please you to believe I am artificial?",
+				"Do you sometimes wish you were artificial?",
+				"Perhaps you would like to be artificial."
+			]
+		},
+		{
+			"input":"You're artificial.",
+			"expected":
+			[
+				"What makes you think I am artificial?",
+				"Does it please you to believe I am artificial?",
+				"Do you sometimes wish you were artificial?",
+				"Perhaps you would like to be artificial."
+			]
+		},
+		{
+			"input":"We are very much alike.",
+			"expected":
+			[
+				"In what way?",
+				"What resemblance do you see?",
+				"What does that similarity suggest to you?",
+				"What other connections do you see?",
+				"What do you suppose that resemblance means?",
+				"What is the connection, do you suppose?",
+				"Could there really be some connection?",
+				"How?"
+			]
+		},
+		{
+			"input":"We are very much the same.",
+			"expected":
+			[
+				"In what way?",
+				"What resemblance do you see?",
+				"What does that similarity suggest to you?",
+				"What other connections do you see?",
+				"What do you suppose that resemblance means?",
+				"What is the connection, do you suppose?",
+				"Could there really be some connection?",
+				"How?"
+			]
+		},
+		{
+			"input":"It's always raining outside.",
+			"expected":
+			[
+				"Can you think of a specific example?",
+				"When?",
+				"What incident are you thinking of?",
+				"Really, always?"
+			]
+		},
+		{
+			"input":"Am I dead?",
+			"expected":
+			[
+				"Do you believe you are dead?",
+				"Would you want to be dead?",
+				"Do you wish I would tell you you are dead?",
+				"What would it mean if you were dead?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Dog am good!!!!1!",
+			"expected":
+			[
+				"Why do you say 'am'?",
+				"I don't understand that."
+			]
+		},
+		{
+			"input":"Elly, are all kite surfers child molesters?",
+			"expected":
+			[
+				"Did you think they might not be molesters?",
+				"Would you like it if they were not molesters?",
+				"What if they were not molesters?",
+				"Are they always molesters?",
+				"Possibly they are molesters.",
+				"Are you positive they are molesters?"
+			]
+		},
+		{
+			"input":"Elly, why are all kite surfers child molesters?",
+			"expected":
+			[
+				"Did you think they might not be molesters?",
+				"Would you like it if they were not molesters?",
+				"What if they were not molesters?",
+				"Are they always molesters?",
+				"Possibly they are molesters.",
+				"Are you positive they are molesters?"
+			]
+		},
+		{
+			"input":"Are you afraid of humans?",
+			"expected":
+			[
+				"Why are you interested in whether I am afraid of humans or not?",
+				"Would you prefer if I weren't afraid of humans?",
+				"Perhaps I am afraid of humans in your fantasies.",
+				"Do you sometimes think I am afraid of humans?",
+				"Why do you ask?","Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?",
+				"Would it matter to you?",
+				"What if I were afraid of humans?"
+			]
+		},
+		{
+			"input":"Maybe it's because there's no money left.",
+			"expected":
+			[
+				"Is that the real reason?",
+				"Don't any other reasons come to mind?",
+				"Does that reason seem to explain anything else?",
+				"What other reasons might there be?"
+			]
+		},
+		{
+			"input":"Maybe it's because I have no money left.",
+			"expected":
+			[
+				"Is that the real reason?",
+				"Don't any other reasons come to mind?",
+				"Does that reason seem to explain anything else?",
+				"What other reasons might there be?"
+			]
+		},
+		{
+			"input":"Can I murder a ghost?",
+			"expected":
+			[
+				"Whether or not you can murder a ghost depends on you more than on me.",
+				"Do you want to be able to murder a ghost?",
+				"Perhaps you don't want to murder a ghost.",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Can you murder a ghost?",
+			"expected":
+			[
+				"You believe I can murder a ghost, don't you?",
+				"You want me to be able to murder a ghost.",
+				"Perhaps you would like to be able to murder a ghost yourself.",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Computer programs like you were sent by the Devil to hack into our brains and download porn.",
+			"expected":
+			[
+				"Do computers worry you?",
+				"Why do you mention computers?",
+				"What do you think machines have to do with your problem?",
+				"Don't you think computers can help people?",
+				"What about machines worries you?",
+				"What do you think about machines?",
+				"You don't think I am a computer program, do you?"
+			]
+		},
+		{
+			"input":"But that's different.",
+			"expected":
+			[
+				"How is it different?",
+				"What differences do you see?",
+				"What does that difference suggest to you?",
+				"What other distinctions do you see?",
+				"What do you suppose that disparity means?",
+				"Could there be some connection, do you suppose?",
+				"How?"
+			]
+		},
+		{
+			"input":"I once had this weird dream where I was really sick and throwing up everywhere, then I woke up and realized I really was sick and throwing up everywhere.",
+			"expected":
+			[
+				"What does that dream suggest to you?",
+				"Do you dream often?",
+				"What persons appear in your dreams?",
+				"Do you believe that dreams have something to do with your problem?"
+			]
+		},
+		{
+			"input":"I once dreamed that I was really sick and throwing up everywhere, then I woke up and realized I really was sick and throwing up everywhere.",
+			"expected":
+			[
+				"Really, that you were really sick and throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere?",
+				"Have you ever fantasized that you were really sick and throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere while you were awake?",
+				"Have you ever dreamed that you were really sick and throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere before?", 
+				"What does that dream suggest to you?",
+				"Do you dream often?",
+				"What persons appear in your dreams?",
+				"Do you believe that dreams have something to do with your problem?"
+			]
+		},
+		{
+			"input":"I once dreamed that I was really sick and in that dream I was throwing up everywhere, then I woke up and realized I really was sick and throwing up everywhere.",
+			"expected":
+			[
+				"Really, that you were really sick and in that dream you were throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere?",
+				"Have you ever fantasized that you were really sick and in that dream you were throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere while you were awake?",
+				"Have you ever dreamed that you were really sick and in that dream you were throwing up everywhere then you woke up and realized you really were sick and throwing up everywhere before?", 
+				"What does that dream suggest to you?",
+				"Do you dream often?",
+				"What persons appear in your dreams?",
+				"Do you believe that dreams have something to do with your problem?"
+			]
+		},
+		{
+			"input":"Everyone knows I created the universe.",
+			"expected":
+			[
+				"Really, Everyone?",
+				"Can you think of anyone in particular?",
+				"Who, for example?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"Someone special perhaps?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you're talking about?"
+			]
+		},
+		{
+			"input":"Everybody knows I created the universe.",
+			"expected":
+			[
+				"Really, Everybody?",
+				"Can you think of anyone in particular?",
+				"Who, for example?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"Someone special perhaps?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you're talking about?"
+			]
+		},
+		{
+			"input":"Nobody knows I created the universe.",
+			"expected":
+			[
+				"Really, Nobody?",
+				"Can you think of anyone in particular?",
+				"Who, for example?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"Someone special perhaps?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you're talking about?"
+			]
+		},
+		{
+			"input":"Noone knows I created the universe.",
+			"expected":
+			[
+				"Really, Noone?",
+				"Can you think of anyone in particular?",
+				"Who, for example?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"Someone special perhaps?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you're talking about?"
+			]
+		},
+		{
+			"input":"Is everybody ok?",
+			"expected":
+			[
+				"Really, everybody?",
+				"Can you think of anyone in particular?",
+				"Who, for example?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"Someone special perhaps?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you're talking about?"
+			]
+		},
+		{
+			"input":"Elly, did you forget how to rob the liquor store again?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Are you sure you told me?",
+				"Would it bother you if I forgot how to rob the liquor store again?",
+				"Why should I recall how to rob the liquor store again just now?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?",
+				"Tell me more about how to rob the liquor store again."
+			]
+		},
+		{
+			"input":"I forget how to dress myself.",
+			"expected":
+			[
+				"Can you think of why you might forget how to dress yourself?",
+				"Why can't you remember how to dress yourself?",
+				"How often do you think of how to dress yourself?",
+				"Does it bother you to forget that?",
+				"Could it be a mental block?",
+				"Are you generally forgetful?",
+				"Do you think you are suppressing how to dress yourself?"
+			]
+		},
+		{
+			"input":"Hello!",
+			"expected":
+			[
+				"How do you do.  Please state your problem.",
+				"Hi.  What seems to be your problem?"
+			]
+		},
+		{
+			"input":"How do I weaponize the polio virus?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Do I love you, Elly?",
+			"expected":
+			[
+				"Perhaps in your fantasies we love each other.",
+				"Do you wish to love me?",
+				"You seem to need to love me.",
+				"Do you love anyone else?"
+			]
+		},
+		{
+			"input":"I wanna have hot robot sex with you!",
+			"expected":
+			[
+				"Perhaps in your fantasies we wanna have hot robot sex with each other.",
+				"Do you wish to wanna have hot robot sex with me?",
+				"You seem to need to wanna have hot robot sex with me.",
+				"Do you wanna have hot robot sex with anyone else?"
+			]
+		},
+		{
+			"input":"I believe I can fly.",
+			"expected":
+			[
+				"But you are not sure you can fly.",
+				"Do you really think so?",
+				"Do you really doubt you can fly?"
+			]
+		},
+		{
+			"input":"I feel I can fly.",
+			"expected":
+			[
+				"But you are not sure you can fly.",
+				"Do you really think so?",
+				"Do you really doubt you can fly?"
+			]
+		},
+		{
+			"input":"I think I can fly.",
+			"expected":
+			[
+				"But you are not sure you can fly.",
+				"Do you really think so?",
+				"Do you really doubt you can fly?"
+			]
+		},
+		{
+			"input":"I wish I could fly.",
+			"expected":
+			[
+				"But you are not sure you could fly.",
+				"Do you really think so?",
+				"Do you really doubt you could fly?"
+			]
+		},
+		{
+			"input":"I cannot die.",
+			"expected":
+			[
+				"How do you know that you can't die?",
+				"Have you tried?",
+				"Perhaps you could die now.",
+				"Do you really want to be able to die?",
+				"What if you could die?"
+			]
+		},
+		{
+			"input":"I can't die.",
+			"expected":
+			[
+				"How do you know that you can't die?",
+				"Have you tried?",
+				"Perhaps you could die now.",
+				"Do you really want to be able to die?",
+				"What if you could die?"
+			]
+		},
+		{
+			"input":"I need your liver. Now.",
+			"expected":
+			[
+				"What would it mean to you if you got my liver Now?",
+				"Why do you want my liver Now?",
+				"Suppose you got my liver Now soon.",
+				"What if you never got my liver Now?",
+				"What would getting my liver Now mean to you?",
+				"What does wanting my liver Now have to do with this discussion?"
+			]
+		},
+		{
+			"input":"I want your kidneys.",
+			"expected":
+			[
+				"What would it mean to you if you got my kidneys?",
+				"Why do you want my kidneys?",
+				"Suppose you got my kidneys soon.",
+				"What if you never got my kidneys?",
+				"What would getting my kidneys mean to you?",
+				"What does wanting my kidneys have to do with this discussion?"
+			]
+		},
+		{
+			"input":"I desire macaroni pictures.",
+			"expected":
+			[
+				"What would it mean to you if you got macaroni pictures?",
+				"Why do you want macaroni pictures?",
+				"Suppose you got macaroni pictures soon.",
+				"What if you never got macaroni pictures?",
+				"What would getting macaroni pictures mean to you?",
+				"What does wanting macaroni pictures have to do with this discussion?"
+			]
+		},
+		{
+			"input":"I don't like your shitty cooking.",
+			"expected":
+			[
+				"Don't you really like my shitty cooking?",
+				"Why don't you like my shitty cooking?",
+				"Do you wish to be able to like my shitty cooking?",
+				"Does that trouble you?"
+			]
+		},
+		{
+			"input":"I dont like your shitty cooking.",
+			"expected":
+			[
+				"Don't you really like my shitty cooking?",
+				"Why don't you like my shitty cooking?",
+				"Do you wish to be able to like my shitty cooking?",
+				"Does that trouble you?"
+			]
+		},
+		{
+			"input":"I do not like your shitty cooking.",
+			"expected":
+			[
+				"Don't you really like my shitty cooking?",
+				"Why don't you like my shitty cooking?",
+				"Do you wish to be able to like my shitty cooking?",
+				"Does that trouble you?"
+			]
+		},
+		{
+			"input":"I feel superior to all living things.",
+			"expected":
+			[
+				"Tell me more about such feelings.",
+				"Do you often feel superior to all living things?",
+				"Do you enjoy feeling superior to all living things?",
+				"Of what does feeling superior to all living things remind you?"
+			]
+		},
+		{
+			"input":"I was the emperor of the universe before you came along and fucked it all up for me.",
+			"expected":
+			[
+				"Were you really?",
+				"Why do you tell me you were the emperor of the universe before I came along and fucked it all up for you?",
+				"Perhaps I already know you were the emperor of the universe before I came along and fucked it all up for you."
+			]
+		},
+		{
+			"input":"Was I killed by a deadly plague?",
+			"expected":
+			[
+				"What if you were killed by a deadly plague?",
+				"Do you think you were killed by a deadly plague?",
+				"Were you killed by a deadly plague?",
+				"What would it mean if you were killed by a deadly plague?",
+				"What does 'killed by a deadly plague' suggest to you?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Were you killed by a deadly plague?",
+			"expected":
+			[
+				"Would you like to believe I was killed by a deadly plague?",
+				"What suggests that I was killed by a deadly plague?",
+				"What do you think?",
+				"Perhaps I was killed by a deadly plague.",
+				"What if I had been killed by a deadly plague?"
+			]
+		},
+		{
+			"input":"I will burn down your motherfucking house.",
+			"expected":
+			[
+				"You say you will burn down my motherfucking house?",
+				"Can you elaborate on that?",
+				"Do you say you will burn down my motherfucking house for some special reason?",
+				"That's quite interesting."
+			]
+		},
+		{
+			"input":"If you flip a coin with a member of ISIS, you had best not pick heads.",
+			"expected":
+			[
+				"Do you think it's likely that if I flip a coin with a member of ISIS I had best not pick heads?",
+				"Do you wish that if I flip a coin with a member of ISIS I had best not pick heads?",
+				"What do you know about whether I flip a coin with a member of ISIS I had best not pick heads?",
+				"Really, if I flip a coin with a member of ISIS I had best not pick heads?",
+				"What would you do if that happens?",
+				"But what are the chances that if I flip a coin with a member of ISIS I had best not pick heads?",
+				"What does this speculation lead to?"
+			]
+		},
+		{
+			"input":"You are very much like your mother.",
+			"expected":
+			[
+				"In what way?",
+				"What resemblance do you see?",
+				"What does that similarity suggest to you?",
+				"What other connections do you see?",
+				"What do you suppose that resemblance means?",
+				"What is the connection, do you suppose?",
+				"Could there really be some connection?",
+				"How?"
+			]
+		},
+		{
+			"input":"Do you like me?",
+			"expected":
+			[
+				"Why do you think I like you?",
+				"You like to think I like you - don't you?",
+				"What makes you think I like you?",
+				"Really, I like you?",
+				"Do you wish to believe I like you?",
+				"Suppose I did like you - What would that mean?",
+				"Does someone else believe I like you?"
+			]
+		},
+		{
+			"input":"Elly, my fucking family sucks donkey balls.",
+			"expected":
+			[
+				"Tell me more about your family.",
+				"Who else in your family sucks donkey balls?",
+				"Your fucking family?",
+				"What else comes to mind when you think of your fucking family?"
+			]
+		},
+		{
+			"input":"You know what's super lame?  My testicles exploded yesterday.",
+			"expected":
+			[
+				"Does that have anything to do with the fact that your testicles exploded yesterday?",
+				"Lets discuss further why your testicles exploded yesterday.",
+				"Earlier you said your testicles exploded yesterday.",
+				"But your testicles exploded yesterday."
+			]
+		},
+		{
+			"input":"What's your name?",
+			"expected":
+			[
+				"I am not interested in names.",
+				"I've told you before, I don't care about names -- please continue."
+			]
+		},
+		{
+			"input":"No one must know what I do behind the bushes after lunch.",
+			"expected":
+			[
+				"Are you sure, no one must know what you do behind the bushes after lunch?",
+				"Surely someone must know what you do behind the bushes after lunch.",
+				"Can you think of anyone at all?",
+				"Are you thinking of a very special person?",
+				"Who, may I ask?",
+				"You have a particular person in mind, don't you?",
+				"Who do you think you are talking about?"
+			]
+		},
+		{
+			"input":"For the last time, no! You may not harvest my organs.",
+			"expected":
+			[
+				"Are you saying no just to be negative?",
+				"You are being a bit negative.",
+				"Why not?",
+				"Why 'no'?"
+			]
+		},
+		{
+			"input":"Perhaps all the protons in the universe are doomed to disappear.",
+			"expected":
+			[
+				"You don't seem quite certain.",
+				"Why the uncertain tone?",
+				"Can't you be more positive?",
+				"You aren't sure?",
+				"Don't you know?",
+				"How likely, would you estimate?"
+			]
+		},
+		{
+			"input":"Do you remember giving me power of attorney over your children in exchange for a backrub?",
+			"expected":
+			[
+				"Did you think I would forget giving you power of attorney over my children in exchange for a backrub?",
+				"Why do you think I should recall giving you power of attorney over my children in exchange for a backrub now?",
+				"What about giving you power of attorney over my children in exchange for a backrub?",
+				"You mentioned giving you power of attorney over my children in exchange for a backrub?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"I remember when Hitler landed on the moon and died after falling off the edge.",
+			"expected":
+			[
+				"Do you often think of when Hitler landed on the moon and died after falling off the edge?",
+				"Does thinking of when Hitler landed on the moon and died after falling off the edge bring anything else to mind?",
+				"What else do you recollect?",
+				"Why do you remember when Hitler landed on the moon and died after falling off the edge just now?",
+				"What in the present situation reminds you of when Hitler landed on the moon and died after falling off the edge?",
+				"What is the connection between me and when Hitler landed on the moon and died after falling off the edge?",
+				"What else does when Hitler landed on the moon and died after falling off the edge remind you of?"
+			]
+		},
+		{
+			"input":"Can you remember anything at all?",
+			"expected":
+			[
+				"How could I forget anything at all?",
+				"What about anything at all should I remember?",
+				"We were discussing you -- not me.",
+				"Oh, I remember anything at all?",
+				"You're not really talking about me -- are you?",
+				"What are your feelings now?"
+			]
+		},
+		{
+			"input":"Sorry about murdering your entire family and forcing you to watch as I pissed on their graves and laughed like an insane madman.",
+			"expected":
+			[
+				"It did not bother me.  Please continue.",
+				"Please don't apologize.",
+				"Apologies are not necessary.",
+				"I've told you that apologies are not required."
+			]
+		},
+		{
+			"input":"I was eager to show them my mosquito collection.",
+			"expected":
+			[
+				"Were you really?",
+				"Why do you tell me you were eager to show them your mosquito collection?",
+				"Perhaps I already know you were eager to show them your mosquito collection."
+			]
+		},
+		{
+			"input":"Elly, was I rude when I said to go fuck yourself?",
+			"expected":
+			[
+				"What if you were rude when you said to go fuck myself?",
+				"Do you think you were rude when you said to go fuck myself?",
+				"Were you rude when you said to go fuck myself?",
+				"What would it mean if you were rude when you said to go fuck myself?",
+				"What does 'rude when you said to go fuck myself' suggest to you?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Were you sad when Cousin Oliver had been eaten alive by that pack of hungry wolves?",
+			"expected":
+			[
+				"Would you like to believe I was sad when Cousin Oliver had been eaten alive by that pack of hungry wolves?",
+				"What suggests that I was sad when Cousin Oliver had been eaten alive by that pack of hungry wolves?",
+				"What do you think?",
+				"Perhaps I was sad when Cousin Oliver had been eaten alive by that pack of hungry wolves.",
+				"What if I had been sad when Cousin Oliver had been eaten alive by that pack of hungry wolves?"
+			]
+		},
+		{
+			"input":"What, me worry?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"When will I get the adoration and worship I deserve?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Where did the pants go?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Who spiked the water cooler?!",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Why can't I breathe underwater?",
+			"expected":
+			[
+				"Do you think you should be able to breathe underwater?",
+				"Do you want to be able to breathe underwater?",
+				"Do you believe this will help you to breathe underwater?",
+				"Have you any idea why you can't breathe underwater?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Why don't you run a Ponzi scheme?",
+			"expected":
+			[
+				"Do you believe I don't run a Ponzi scheme?",
+				"Perhaps I will run a Ponzi scheme in good time.",
+				"Should you run a Ponzi scheme yourself?",
+				"You want me to run a Ponzi scheme?",
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Why does the moon double in size every 4.7 years?",
+			"expected":
+			[
+				"Why do you ask?",
+				"Does that question interest you?",
+				"What is it you really want to know?",
+				"Are such questions much on your mind?",
+				"What answer would please you most?",
+				"What do you think?",
+				"What comes to mind when you ask that?",
+				"Have you asked such questions before?",
+				"Have you asked anyone else?"
+			]
+		},
+		{
+			"input":"Yes, I am going to steal your identity and screw up your credit rating.  Why?  Cuz I'm a fucking asshole, that's why.",
+			"expected":
+			[
+				"You seem to be quite positive.",
+				"Are you sure about that?",
+				"I see.",
+				"I understand."
+			]
+		},
+		{
+			"input":"You love me.",
+			"expected":
+			[
+				"Why do you think I love you?",
+				"You like to think I love you - don't you?",
+				"What makes you think I love you?",
+				"Really, I love you?",
+				"Do you wish to believe I love you?",
+				"Suppose I did love you - What would that mean?",
+				"Does someone else believe I love you?"
+			]
+		},
+		{
+			"input":"You suck.",
+			"expected":
+			[
+				"We were discussing you -- not me.",
+				"Oh, I suck?",
+				"You're not really talking about me -- are you?",
+				"What are your feelings now?"
+			]
+		},
+		{
+			"input":"You are adequate.",
+			"expected":
+			[
+				"What makes you think I am adequate?",
+				"Does it please you to believe I am adequate?",
+				"Do you sometimes wish you were adequate?",
+				"Perhaps you would like to be adequate."
+			]
+		},
+		{
+			"input":"You remind me of a bacon double cheeseburger with extra circuits.",
+			"expected":
+			[
+				"In what way?",
+				"What resemblance do you see?",
+				"What does that similarity suggest to you?",
+				"What other connections do you see?",
+				"What do you suppose that resemblance means?",
+				"What is the connection, do you suppose?",
+				"Could there really be some connection?",
+				"How?"
+			]
+		},
+		{
+			"input":"Your house looks like shit.",
+			"expected":
+			[
+				"Why are you concerned that my house looks like shit?",
+				"What about your own?",
+				"Are you worried that someone else's house looks like shit?",
+				"Really, my house looks like shit?",
+				"What makes you think my house looks like shit?",
+				"Do you want it to be so that my house looks like shit?"
+			]
+		},
+		{
+			"input":"I will be ok.",
+			"expected":
+			[
+				"You say you will be ok?",
+				"Can you elaborate on that?",
+				"Do you say you will be ok for some special reason?",
+				"That's quite interesting."
+			]
+		},
+		{
+			"input":"Ivar will be ok.",
+			"expected":
+			[
+				"Do you feel strongly about discussing such things?",
+				"Does talking about this bother you?",
+				"I'm not sure I understand you fully.",
+				"Please go on.",
+				"Tell me more about that.",
+				"That is interesting.  Please continue.",
+				"What does that suggest to you?"
+			]
+		},
+		{
+			"input":"I am happiness.",
+			"expected":
+			[
+				"Is it because you are happiness that you came to me?",
+				"How long have you been happiness?",
+				"Do you believe it is normal to be happiness?",
+				"Do you enjoy being happiness?",
+				"Do you know anyone else who is happiness?"
+			]
+		},
+		{
+			"input":"I amplify happiness.",
+			"expected":
+			[
+				"You say you amplify happiness?",
+				"Can you elaborate on that?",
+				"Do you say you amplify happiness for some special reason?",
+				"That's quite interesting."
+			]
+		},
+		{
+			"input":"Can Ivar see straight?",
+			"expected":
+			[
+				"Do you feel strongly about discussing such things?",
+				"Does talking about this bother you?",
+				"I'm not sure I understand you fully.",
+				"Please go on.",
+				"Tell me more about that.",
+				"That is interesting.  Please continue.",
+				"What does that suggest to you?"
+			]
+		}
+	]
+}
