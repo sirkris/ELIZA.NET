@@ -17,6 +17,8 @@ namespace ELIZA.NET.Structures
         private string Script = null;
 
         [JsonProperty("aliases")]
+        private string AliasesStr = null;
+
         private List<string> Aliases = null;
 
         public Transformation(string word, string script, string aliases)
@@ -57,6 +59,12 @@ namespace ELIZA.NET.Structures
 
         public List<string> GetAliases()
         {
+            if (AliasesStr != null)
+            {
+                SetAliases(AliasesStr);
+                this.AliasesStr = null;
+            }
+
             return Aliases;
         }
 

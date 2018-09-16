@@ -11,7 +11,7 @@ namespace ELIZA.NET
     /// <summary>
     /// Your session with the great ELIZA.
     /// </summary>
-    private class Session
+    public class Session
     {
         private Random rand = null;
 
@@ -44,7 +44,21 @@ namespace ELIZA.NET
             SetScript(script);
             ResetHistory();
 
+            Script.SetSynonyms(SortLength(Script.GetSynonyms()));
+
+            ApplyDuplications();
+
             this.rand = new Random();
+        }
+
+        /// <summary>
+        /// Sort the synonyms so that the longest words are checked first.
+        /// </summary>
+        /// <param name="synonyms">List of synonyms to be sorted.</param>
+        /// <returns>List of synonyms sorted by word string length in descending order.</returns>
+        private List<Synonym> SortLength(List<Synonym> synonyms)
+        {
+            return synonyms.OrderByDescending(x => x.GetWord()).ToList();
         }
 
         /// <summary>
@@ -84,6 +98,27 @@ namespace ELIZA.NET
         }
 
         /// <summary>
+        /// Enables ELIZA to identify synonyms as their corresponding keywords.
+        /// </summary>
+        private void ApplyDuplications()
+        {
+            foreach (Synonym synonym in Script.GetSynonyms())
+            {
+                if (Script.GetKeywords().ContainsKey(synonym.GetWord()))
+                {
+                    foreach (string alias in synonym.GetAliases())
+                    {
+                        if (!Script.GetKeywords().ContainsKey(alias))
+                        {
+                            Script.GetKeywords().Add(alias, Script.GetKeywords()[synonym.GetWord()]);
+                            Script.GetKeywords()[alias].SetWord(alias);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Invert pairs and reassemble.
         /// </summary>
         /// <returns>Reassembly with inverted pairs.</returns>
@@ -101,11 +136,12 @@ namespace ELIZA.NET
             string reassembly = LastRule.GetReassembly()[rand.Next(LastRule.GetReassembly().Count())];
 
             // If reassembly string is of the form "GOTO <keyword>" (keyword MUST have a matching decomposition rule!), that keyword's reassembly will be substituted.  --Kris
-            if (reassembly.Substring(0, 5).Equals("GOTO "))
+            if (reassembly.Length > 5 
+                && reassembly.Substring(0, 5).Equals("GOTO "))
             {
                 if (CheckRule(reassembly.Substring(5)))
                 {
-                    GetReassembly();
+                    return GetReassembly();
                 }
                 else
                 {
@@ -126,24 +162,26 @@ namespace ELIZA.NET
             List<string> parts = new List<string>();
 
             // I know how this looks, but it's actually just O(m * n) because we're still doing the same number of iterations we would if going through the original pairs list.  --Kris
-            foreach (KeyValuePair<int, List<Pair>> pairs in SanitizePairs().Reverse())
+            for (int i = 0; i < LastParts[0].Groups.Count; i++)
             {
-                foreach (Pair pair in pairs.Value)
+                string part = LastParts[0].Groups[i].Value;
+
+                foreach (KeyValuePair<int, List<Pair>> pairs in SanitizePairs().Reverse())
                 {
-                    for (int i = 0; i < LastParts.Count; i++)
+                    foreach (Pair pair in pairs.Value)
                     {
-                        string part = LastParts[i].Value;
+                        string origPart = part;
                         part = ReplacePart(pair.GetWord(), pair.GetInverse(), part);
 
                         if (pair.GetBidirectional()
-                            && part.Equals(LastParts[i].Value))
+                            && part.Equals(origPart))
                         {
                             part = ReplacePart(pair.GetInverse(), pair.GetWord(), part);
                         }
-
-                        parts.Add(part);
                     }
                 }
+
+                parts.Add(part);
             }
 
             return ApplyParts(reassembly, parts);
@@ -179,7 +217,7 @@ namespace ELIZA.NET
         /// <returns>The modified part.</returns>
         private string ReplacePart(string word, string inverse, string part)
         {
-            return Regex.Replace(part, ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase);
+            return Regex.Replace(' ' + part + ' ', ' ' + word + ' ', ' ' + inverse + ' ', RegexOptions.IgnoreCase).Trim();
         }
 
         /// <summary>
@@ -192,7 +230,7 @@ namespace ELIZA.NET
         {
             for (int i = 0; i < parts.Count(); i++)
             {
-                reassembly = reassembly.Replace('$' + (i + 1).ToString(), parts[i].Trim());
+                reassembly = reassembly.Replace('$' + i.ToString(), parts[i].Trim());
             }
 
             return reassembly;
@@ -228,10 +266,14 @@ namespace ELIZA.NET
             this.LastKeyStack = new SortedDictionary<int, List<string>>();
             foreach (string word in LastInput.Split(' '))
             {
-                if (Script.GetKeywords().ContainsKey(word.ToLower())
-                    && !LastKeyStack.ContainsKey(Script.GetKeywords()[word.ToLower()].GetRank()))
+                if (Script.GetKeywords().ContainsKey(word.ToLower()))
                 {
-                    LastKeyStack.Add(Script.GetKeywords()[word.ToLower()].GetRank(), new List<string>());
+                    if (!LastKeyStack.ContainsKey(Script.GetKeywords()[word.ToLower()].GetRank()))
+                    {
+                        LastKeyStack.Add(Script.GetKeywords()[word.ToLower()].GetRank(), new List<string>());
+                    }
+
+                    LastKeyStack[Script.GetKeywords()[word.ToLower()].GetRank()].Add(word);
                 }
             }
         }
@@ -263,7 +305,7 @@ namespace ELIZA.NET
         /// <returns>Whether or not any of the keyword's decomposition rules matched the last input.</returns>
         private bool CheckRule(string keyword)
         {
-            foreach (Rule rule in Script.GetKeywords()[keyword].GetRules())
+            foreach (Rule rule in Script.GetKeywords()[keyword.ToLower()].GetRules())
             {
                 // If decomposition rule contains '@' alias, match against all corresponding entries in the synonyms table.  --Kris
                 foreach (Synonym synonym in Script.GetSynonyms())
@@ -276,6 +318,7 @@ namespace ELIZA.NET
                 if (matches.Count > 0)
                 {
                     this.LastRule = rule;
+                    this.LastParts = matches;
                     return true;
                 }
             }
