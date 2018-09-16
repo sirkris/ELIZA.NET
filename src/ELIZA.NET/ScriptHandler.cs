@@ -81,15 +81,17 @@ namespace ELIZA.NET
             // Reminder:  This handler is only designed to handle one script at a time.  If you want to juggle multiple scripts, you should use multiple instances of this class.  --Kris
             keys.Add(scriptName, keys["scripts"].CreateSubKey(scriptName));
 
-            this.script = new Script(
-                JsonConvert.DeserializeObject<List<GenericResponse>>((string) keys[scriptName].GetValue("GenericResponses", new List<GenericResponse>())),
-                JsonConvert.DeserializeObject<List<Goodbye>>((string) keys[scriptName].GetValue("Goodbyes", new List<Goodbye>())),
-                JsonConvert.DeserializeObject<List<Greeting>>((string) keys[scriptName].GetValue("Greetings", new List<Greeting>())),
-                JsonConvert.DeserializeObject<List<Pair>>((string) keys[scriptName].GetValue("Pairs", new List<Pair>())),
-                JsonConvert.DeserializeObject<List<Synonym>>((string) keys[scriptName].GetValue("Synonyms", new List<Synonym>())),
-                JsonConvert.DeserializeObject<List<Transformation>>((string) keys[scriptName].GetValue("Transformations", new List<Transformation>())),
-                JsonConvert.DeserializeObject<List<Keyword>>((string) keys[scriptName].GetValue("Keywords", new List<Keyword>()))
-            );
+            string json = "{"
+                + "\"GenericResponses\":" + (string) keys[scriptName].GetValue("GenericResponses", new List<GenericResponse>()) + ","
+                + "\"Goodbyes\":" + (string) keys[scriptName].GetValue("Goodbyes", new List<Goodbye>()) + ","
+                + "\"Greetings\":" + (string) keys[scriptName].GetValue("Greetings", new List<Greeting>()) + ","
+                + "\"Pairs\":" + (string) keys[scriptName].GetValue("Pairs", new List<Pair>()) + ","
+                + "\"Synonyms\":" + (string) keys[scriptName].GetValue("Synonyms", new List<Synonym>()) + ","
+                + "\"Transformations\":" + (string) keys[scriptName].GetValue("Transformations", new List<Transformation>()) + ","
+                + "\"Keywords\":" + (string) keys[scriptName].GetValue("Keywords", new List<Keyword>())
+                + "}";
+
+            LoadFromJSONData(json);
         }
 
         public void SaveToRegistry()
@@ -124,8 +126,13 @@ namespace ELIZA.NET
 
         public void LoadFromJSONData(string json)
         {
-            // JSON.NET does not seem to do well with embedded regex (things like word boundaries get parsed as JSON escape sequences).  Messy but effective workaround right here (TODO - Cleanup).  --Kris
-            this.script = JsonConvert.DeserializeObject<Script>(Regex.Replace(json, @"(\\)(?=[a-z])", "_____").Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", ""));
+            this.script = JsonConvert.DeserializeObject<Script>(SanitizeJSON(json));
+        }
+
+        // JSON.NET does not seem to do well with embedded regex (things like word boundaries get parsed as JSON escape sequences).  Messy but effective workaround right here (TODO - Cleanup).  --Kris
+        private string SanitizeJSON(string json)
+        {
+            return Regex.Replace(json, @"(\\)(?=[a-z])", "_____").Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", "");
         }
 
         public void LoadFromAPI(string URI)
