@@ -1,7 +1,7 @@
 # ELIZA.NET
 A modern .NET linked library implementation of the classic ELIZA chatbot.  Written in C#.
 
-To install, simply copy Release\ELIZA.NET.dll to a directory accessible to your app and add it as a reference in VS.
+To install, simply copy dist\ELIZA.NET.dll to a directory accessible to your app and add it as a reference in VS.
 
 If you want to install an ELIZA test script to the system registry, use RegistryInstall.exe.
 
