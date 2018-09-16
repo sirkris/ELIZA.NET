@@ -90,7 +90,7 @@ namespace RunTests
 
             double runTime = ((DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds - (start.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds) / 1000;
 
-            res += Environment.NewLine + "Performed " + tests.ToString() + " tests on " + TestScript.Test.Count().ToString() + " ELIZA inputs in " 
+            res += Environment.NewLine + "Completed " + tests.ToString() + " tests on " + TestScript.Test.Count().ToString() + " ELIZA inputs in " 
                 + runTime.ToString() + " seconds successfully." + Environment.NewLine;
 
             if (errors.Count > 0)

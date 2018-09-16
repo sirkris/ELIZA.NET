@@ -44,11 +44,18 @@ namespace ELIZA.NET
             SetScript(script);
             ResetHistory();
 
-            this.Script.SetSynonyms(SortLength(Script.GetSynonyms()));
+            Script.SetSynonyms(SortLength(Script.GetSynonyms()));
+
+            ApplyDuplications();
 
             this.rand = new Random();
         }
 
+        /// <summary>
+        /// Sort the synonyms so that the longest words are checked first.
+        /// </summary>
+        /// <param name="synonyms">List of synonyms to be sorted.</param>
+        /// <returns>List of synonyms sorted by word string length in descending order.</returns>
         private List<Synonym> SortLength(List<Synonym> synonyms)
         {
             return synonyms.OrderByDescending(x => x.GetWord()).ToList();
@@ -88,6 +95,27 @@ namespace ELIZA.NET
             }
 
             return ProcessRule().Replace(" i ", " I ");
+        }
+
+        /// <summary>
+        /// Enables ELIZA to identify synonyms as their corresponding keywords.
+        /// </summary>
+        private void ApplyDuplications()
+        {
+            foreach (Synonym synonym in Script.GetSynonyms())
+            {
+                if (Script.GetKeywords().ContainsKey(synonym.GetWord()))
+                {
+                    foreach (string alias in synonym.GetAliases())
+                    {
+                        if (!Script.GetKeywords().ContainsKey(alias))
+                        {
+                            Script.GetKeywords().Add(alias, Script.GetKeywords()[synonym.GetWord()]);
+                            Script.GetKeywords()[alias].SetWord(alias);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
