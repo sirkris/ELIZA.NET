@@ -11,16 +11,16 @@ namespace ELIZA.NET.Structures
     public class Keyword
     {
         [JsonProperty("word")]
-        private string Word = null;
+        public string Word = null;
 
         [JsonProperty("script")]
-        private string Script = null;
+        public string Script = null;
 
         [JsonProperty("rank")]
-        private int Rank = 0;
+        public int Rank = 0;
 
         [JsonProperty("rules")]
-        private List<Rule> Rules = null;
+        public List<Rule> Rules = null;
 
         public Keyword(string word, string script, int rank, List<Rule> rules)
         {
@@ -31,45 +31,5 @@ namespace ELIZA.NET.Structures
         }
 
         public Keyword() { }
-
-        public string GetWord()
-        {
-            return Word;
-        }
-
-        public void SetWord(string word)
-        {
-            this.Word = word;
-        }
-
-        public string GetScript()
-        {
-            return Script;
-        }
-
-        public void SetScript(string script)
-        {
-            this.Script = script;
-        }
-
-        public int GetRank()
-        {
-            return Rank;
-        }
-
-        public void SetRank(int rank)
-        {
-            this.Rank = rank;
-        }
-
-        public List<Rule> GetRules()
-        {
-            return Rules;
-        }
-
-        public void SetRules(List<Rule> rules)
-        {
-            this.Rules = rules;
-        }
     }
 }

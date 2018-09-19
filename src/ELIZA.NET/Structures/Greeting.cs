@@ -11,10 +11,10 @@ namespace ELIZA.NET.Structures
     public class Greeting
     {
         [JsonProperty("greeting")]
-        private string GreetingText = null;
+        public string GreetingText = null;
 
         [JsonProperty("script")]
-        private string Script = null;
+        public string Script = null;
 
         public Greeting(string greeting, string script)
         {
@@ -24,27 +24,7 @@ namespace ELIZA.NET.Structures
 
         public Greeting() { }
 
-        public string GetGreeting()
-        {
-            return GreetingText;
-        }
-
-        public void SetGreeting(string greeting)
-        {
-            this.GreetingText = greeting;
-        }
-
-        public string GetScript()
-        {
-            return Script;
-        }
-
-        public void SetScript(string script)
-        {
-            this.Script = script;
-        }
-
-        public string ToString()
+        public override string ToString()
         {
             return GreetingText;
         }
