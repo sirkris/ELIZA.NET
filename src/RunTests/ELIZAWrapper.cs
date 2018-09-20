@@ -1,6 +1,7 @@
 ﻿using ELIZA.NET;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,37 +15,23 @@ namespace RunTests
         /// <summary>
         /// An example ELIZA wrapper class.
         /// </summary>
-        /// <param name="source">One of "registry", "json", or "api".</param>
-        /// <param name="sourceParam">If source is registry, sourceParam is the script name.  Otherwise, it's the path to the script JSON.</param>
-        public ELIZAWrapper(string source = "registry", string sourceParam = "DOCTOR")
+        /// <param name="scriptFile">The path to the JSON file containing the ELIZA script.</param>
+        public ELIZAWrapper(string scriptFile)
         {
-            switch (source.Trim().ToLower())
-            {
-                default:
-                    throw new ArgumentException("Source must be registry, json, or api.");
-                case "registry":
-                    eliza = new ELIZALib(ELIZA.NET.Constants.DEFAULT_AUTOLOAD, ELIZA.NET.Constants.SOURCE_REGISTRY, sourceParam);
-                    break;
-                case "json":
-                    eliza = new ELIZALib(ELIZA.NET.Constants.DEFAULT_AUTOLOAD, ELIZA.NET.Constants.SOURCE_JSON, sourceParam);
-                    break;
-                case "api":
-                    eliza = new ELIZALib(ELIZA.NET.Constants.DEFAULT_AUTOLOAD, ELIZA.NET.Constants.SOURCE_API, sourceParam);
-                    break;
-            }
+            eliza = new ELIZALib(File.ReadAllText(scriptFile));
         }
 
-        public string start()
+        public string Start()
         {
             return eliza.Session.GetGreeting();
         }
 
-        public string stop()
+        public string Stop()
         {
             return eliza.Session.GetGoodbye();
         }
 
-        public string query(string q)
+        public string Query(string q)
         {
             return eliza.GetResponse(q);
         }

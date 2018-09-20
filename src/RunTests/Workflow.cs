@@ -14,33 +14,24 @@ namespace RunTests
         private ELIZAWrapper ElizaWrapper;
         private TestScript TestScript;
 
-        public Workflow(string scriptSource, string testScript, string scriptPath = null)
+        public Workflow(string testScript, string scriptPath)
         {
-            InitializeWorkflow(scriptSource, testScript, scriptPath);
+            InitializeWorkflow(testScript, scriptPath);
         }
 
-        public Workflow(string testScript)
-        {
-            InitializeWorkflow("registry", testScript);
-        }
-
-        private void InitializeWorkflow(string scriptSource, string testScript, string scriptPath = null)
+        private void InitializeWorkflow(string testScript, string scriptPath)
         {
             LoadTestScript(testScript);
-            if (scriptSource.ToLower().Equals("registry"))
-            {
-                scriptPath = TestScript.Script;
-            }
 
-            ElizaWrapper = new ELIZAWrapper(scriptSource, scriptPath);
+            ElizaWrapper = new ELIZAWrapper(scriptPath);
         }
 
-        public void LoadTestScript( string testScript )
+        public void LoadTestScript(string testScript)
         {
             this.TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
         }
 
-        public string start()
+        public string Start()
         {
             string res = "";
 
@@ -57,7 +48,7 @@ namespace RunTests
                 List<string> replies = new List<string>();
                 do
                 {
-                    string reply = ElizaWrapper.query(testCase.Input);
+                    string reply = ElizaWrapper.Query(testCase.Input);
                     if (testCase.Expected.Contains(reply))
                     {
                         if (!replies.Contains(reply))

@@ -14,7 +14,7 @@ namespace ELIZA.NET
 {
     public class ScriptHandler
     {
-        public Script script
+        public Script Script
         {
             get;
             private set;
@@ -22,7 +22,7 @@ namespace ELIZA.NET
 
         public ScriptHandler(string scriptJSON, bool autoLoad = true)
         {
-            this.script = null;
+            this.Script = null;
 
             if (autoLoad)
             {
@@ -30,16 +30,11 @@ namespace ELIZA.NET
             }
         }
 
-        public ScriptHandler() { this.script = null; }
-
-        public void LoadFromJSON(string filename)
-        {
-            LoadFromJSONData(File.ReadAllText(filename));
-        }
+        public ScriptHandler() { this.Script = null; }
 
         public void LoadFromJSONData(string json)
         {
-            this.script = JsonConvert.DeserializeObject<Script>(SanitizeJSON(json));
+            this.Script = JsonConvert.DeserializeObject<Script>(SanitizeJSON(json));
         }
 
         // JSON.NET does not seem to do well with embedded regex (things like word boundaries get parsed as JSON escape sequences).  Messy but effective workaround right here (TODO - Cleanup).

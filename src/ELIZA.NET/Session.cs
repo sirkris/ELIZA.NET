@@ -78,10 +78,10 @@ namespace ELIZA.NET
             {
                 return (History.Count > 0 ? GetGenericResponse() : GetGreeting());
             }
-            else if (s.ToLower().Contains("bye")
-                || s.ToLower().Contains("farewell")
-                || s.ToLower().Equals("exit")
-                || s.ToLower().Equals("quit"))
+            else if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase ) >= 0
+                || s.IndexOf("farewell", StringComparison.OrdinalIgnoreCase) >= 0
+                || s.Equals("exit", StringComparison.OrdinalIgnoreCase)
+                || s.Equals("quit", StringComparison.OrdinalIgnoreCase))
             {
                 return GetGoodbye();
             }
@@ -266,14 +266,16 @@ namespace ELIZA.NET
             this.LastKeyStack = new SortedDictionary<int, List<string>>();
             foreach (string word in LastInput.Split(' '))
             {
-                if (Script.Keywords.ContainsKey(word.ToLower()))
+                string wordKey = word.ToLower();
+
+                if (Script.Keywords.ContainsKey(wordKey))
                 {
-                    if (!LastKeyStack.ContainsKey(Script.Keywords[word.ToLower()].Rank))
+                    if (!LastKeyStack.ContainsKey(Script.Keywords[wordKey].Rank))
                     {
-                        LastKeyStack.Add(Script.Keywords[word.ToLower()].Rank, new List<string>());
+                        LastKeyStack.Add(Script.Keywords[wordKey].Rank, new List<string>());
                     }
 
-                    LastKeyStack[Script.Keywords[word.ToLower()].Rank].Add(word);
+                    LastKeyStack[Script.Keywords[wordKey].Rank].Add(word);
                 }
             }
         }

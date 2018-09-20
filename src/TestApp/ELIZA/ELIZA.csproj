@@ -32,8 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ELIZA.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ELIZA.NET">
       <HintPath>..\..\ELIZA.NET\bin\Debug\ELIZA.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
