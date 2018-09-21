@@ -67,18 +67,14 @@ namespace ELIZA.NET
         /// <returns>A string representing ELIZA's response to your query.</returns>
         public string GetResponse(string s)
         {
-            if (s == null)
-            {
-                return null;
-            }
-
-            s = s.Trim();
-
-            if (s.Equals(""))
+            if (String.IsNullOrWhiteSpace(s))
             {
                 return (History.Count > 0 ? GetGenericResponse() : GetGreeting());
             }
-            else if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase ) >= 0
+
+            s = s.Trim();
+            
+            if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase ) >= 0
                 || s.IndexOf("farewell", StringComparison.OrdinalIgnoreCase) >= 0
                 || s.Equals("exit", StringComparison.OrdinalIgnoreCase)
                 || s.Equals("quit", StringComparison.OrdinalIgnoreCase))

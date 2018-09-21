@@ -34,14 +34,7 @@ namespace ELIZA.NET
 
         public void LoadFromJSONData(string json)
         {
-            this.Script = JsonConvert.DeserializeObject<Script>(SanitizeJSON(json));
-        }
-
-        // JSON.NET does not seem to do well with embedded regex (things like word boundaries get parsed as JSON escape sequences).  Messy but effective workaround right here (TODO - Cleanup).
-        // I realize we could get around this by deserializing to a JObject then converting, but this replacement workaround makes me cry a little less inside so I'm gonna stick with it for now.  --Kris
-        private string SanitizeJSON(string json)
-        {
-            return Regex.Replace(json, @"(\\)(?=[a-z])", "_____").Replace("\"reassembly\":\"", "\"reassembly\":").Replace("]\"", "]").Replace("\\", "");
+            this.Script = JsonConvert.DeserializeObject<Script>(json);
         }
     }
 }
