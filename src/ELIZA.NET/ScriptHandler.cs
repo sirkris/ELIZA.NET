@@ -1,5 +1,4 @@
 ﻿using ELIZA.NET.Structures;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
