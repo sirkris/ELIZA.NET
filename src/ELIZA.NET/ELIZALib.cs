@@ -20,10 +20,10 @@ namespace ELIZA.NET
             private set;
         }
 
-        public ELIZALib(bool autoLoad = Constants.DEFAULT_AUTOLOAD, int source = Constants.DEFAULT_SOURCE, string sourceParam = Constants.DEFAULT_SCRIPT)
+        public ELIZALib(string scriptJSON, bool autoLoad = true)
         {
-            this.ScriptHandler = new ScriptHandler(autoLoad, source, sourceParam);
-            this.Session = new Session(ScriptHandler.GetScript());
+            this.ScriptHandler = new ScriptHandler(scriptJSON, autoLoad);
+            this.Session = new Session(ScriptHandler.Script);
         }
 
         /// <summary>

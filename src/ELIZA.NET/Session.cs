@@ -44,7 +44,7 @@ namespace ELIZA.NET
             SetScript(script);
             ResetHistory();
 
-            Script.SetSynonyms(SortLength(Script.GetSynonyms()));
+            Script.Synonyms = SortLength(Script.Synonyms);
 
             ApplyDuplications();
 
@@ -58,7 +58,7 @@ namespace ELIZA.NET
         /// <returns>List of synonyms sorted by word string length in descending order.</returns>
         private List<Synonym> SortLength(List<Synonym> synonyms)
         {
-            return synonyms.OrderByDescending(x => x.GetWord()).ToList();
+            return synonyms.OrderByDescending(x => x.Word).ToList();
         }
 
         /// <summary>
@@ -67,21 +67,17 @@ namespace ELIZA.NET
         /// <returns>A string representing ELIZA's response to your query.</returns>
         public string GetResponse(string s)
         {
-            if (s == null)
-            {
-                return null;
-            }
-
-            s = s.Trim();
-
-            if (s.Equals(""))
+            if (String.IsNullOrWhiteSpace(s))
             {
                 return (History.Count > 0 ? GetGenericResponse() : GetGreeting());
             }
-            else if (s.ToLower().Contains("bye")
-                || s.ToLower().Contains("farewell")
-                || s.ToLower().Equals("exit")
-                || s.ToLower().Equals("quit"))
+
+            s = s.Trim();
+            
+            if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase ) >= 0
+                || s.IndexOf("farewell", StringComparison.OrdinalIgnoreCase) >= 0
+                || s.Equals("exit", StringComparison.OrdinalIgnoreCase)
+                || s.Equals("quit", StringComparison.OrdinalIgnoreCase))
             {
                 return GetGoodbye();
             }
@@ -102,16 +98,16 @@ namespace ELIZA.NET
         /// </summary>
         private void ApplyDuplications()
         {
-            foreach (Synonym synonym in Script.GetSynonyms())
+            foreach (Synonym synonym in Script.Synonyms)
             {
-                if (Script.GetKeywords().ContainsKey(synonym.GetWord()))
+                if (Script.Keywords.ContainsKey(synonym.Word))
                 {
                     foreach (string alias in synonym.GetAliases())
                     {
-                        if (!Script.GetKeywords().ContainsKey(alias))
+                        if (!Script.Keywords.ContainsKey(alias))
                         {
-                            Script.GetKeywords().Add(alias, Script.GetKeywords()[synonym.GetWord()]);
-                            Script.GetKeywords()[alias].SetWord(alias);
+                            Script.Keywords.Add(alias, Script.Keywords[synonym.Word]);
+                            Script.Keywords[alias].Word = alias;
                         }
                     }
                 }
@@ -133,7 +129,7 @@ namespace ELIZA.NET
         /// <returns>A randomly-chosen reassembly string from the last rule.</returns>
         private string GetReassembly()
         {
-            string reassembly = LastRule.GetReassembly()[rand.Next(LastRule.GetReassembly().Count())];
+            string reassembly = LastRule.Reassembly[rand.Next(LastRule.Reassembly.Count())];
 
             // If reassembly string is of the form "GOTO <keyword>" (keyword MUST have a matching decomposition rule!), that keyword's reassembly will be substituted.  --Kris
             if (reassembly.Length > 5 
@@ -171,12 +167,12 @@ namespace ELIZA.NET
                     foreach (Pair pair in pairs.Value)
                     {
                         string origPart = part;
-                        part = ReplacePart(pair.GetWord(), pair.GetInverse(), part);
+                        part = ReplacePart(pair.Word, pair.Inverse, part);
 
-                        if (pair.GetBidirectional()
+                        if (pair.Bidirectional
                             && part.Equals(origPart))
                         {
-                            part = ReplacePart(pair.GetInverse(), pair.GetWord(), part);
+                            part = ReplacePart(pair.Inverse, pair.Word, part);
                         }
                     }
                 }
@@ -194,9 +190,9 @@ namespace ELIZA.NET
         private SortedDictionary<int, List<Pair>> SanitizePairs()
         {
             SortedDictionary<int, List<Pair>> pairs = new SortedDictionary<int, List<Pair>>();
-            foreach (Pair pair in Script.GetPairs())
+            foreach (Pair pair in Script.Pairs)
             {
-                int i = pair.GetWord().Split(' ').Count();
+                int i = pair.Word.Split(' ').Count();
                 if (!pairs.ContainsKey(i))
                 {
                     pairs.Add(i, new List<Pair>());
@@ -246,11 +242,11 @@ namespace ELIZA.NET
             History.Add(s);
 
             // Apply transformations.  --Kris
-            foreach (Transformation transformation in Script.GetTransformations())
+            foreach (Transformation transformation in Script.Transformations)
             {
                 foreach (string alias in transformation.GetAliases())
                 {
-                    s = Regex.Replace(s, alias, transformation.GetWord(), RegexOptions.IgnoreCase);
+                    s = Regex.Replace(s, alias, transformation.Word, RegexOptions.IgnoreCase);
                 }
             }
 
@@ -266,14 +262,16 @@ namespace ELIZA.NET
             this.LastKeyStack = new SortedDictionary<int, List<string>>();
             foreach (string word in LastInput.Split(' '))
             {
-                if (Script.GetKeywords().ContainsKey(word.ToLower()))
+                string wordKey = word.ToLower();
+
+                if (Script.Keywords.ContainsKey(wordKey))
                 {
-                    if (!LastKeyStack.ContainsKey(Script.GetKeywords()[word.ToLower()].GetRank()))
+                    if (!LastKeyStack.ContainsKey(Script.Keywords[wordKey].Rank))
                     {
-                        LastKeyStack.Add(Script.GetKeywords()[word.ToLower()].GetRank(), new List<string>());
+                        LastKeyStack.Add(Script.Keywords[wordKey].Rank, new List<string>());
                     }
 
-                    LastKeyStack[Script.GetKeywords()[word.ToLower()].GetRank()].Add(word);
+                    LastKeyStack[Script.Keywords[wordKey].Rank].Add(word);
                 }
             }
         }
@@ -305,12 +303,12 @@ namespace ELIZA.NET
         /// <returns>Whether or not any of the keyword's decomposition rules matched the last input.</returns>
         private bool CheckRule(string keyword)
         {
-            foreach (Rule rule in Script.GetKeywords()[keyword.ToLower()].GetRules())
+            foreach (Rule rule in Script.Keywords[keyword.ToLower()].Rules)
             {
                 // If decomposition rule contains '@' alias, match against all corresponding entries in the synonyms table.  --Kris
-                foreach (Synonym synonym in Script.GetSynonyms())
+                foreach (Synonym synonym in Script.Synonyms)
                 {
-                    rule.SetDecomposition(rule.GetDecomposition().Replace('@' + synonym.GetWord(), synonym.GetWord() + '|' + String.Join(@"|", synonym.GetAliases().ToArray())));
+                    rule.SetDecomposition(rule.GetDecomposition().Replace('@' + synonym.Word, synonym.Word + '|' + String.Join(@"|", synonym.GetAliases().ToArray())));
                 }
 
                 // Match the decomposition rule against the last input and capture matched parts.  --Kris

@@ -14,10 +14,14 @@ namespace ELIZA.NET.Structures
         private string Decomposition = null;
 
         [JsonProperty("reassembly")]
-        private List<string> Reassembly = null;
+        public List<string> Reassembly
+        {
+            get;
+            private set;
+        }
 
         [JsonProperty("memorize")]
-        private bool Memorize = false;  // TODO - Implement this feature.  --Kris
+        public bool Memorize = false;  // TODO - Implement this feature.  --Kris
 
         public Rule(string decomposition, string reassembly, bool memorize = false)
         {
@@ -33,7 +37,7 @@ namespace ELIZA.NET.Structures
             this.Memorize = memorize;
         }
 
-        public Rule() { }
+        public Rule() { this.Reassembly = null; }
 
         public string GetDecomposition()
         {
@@ -45,11 +49,6 @@ namespace ELIZA.NET.Structures
             this.Decomposition = decomposition;
         }
 
-        public List<string> GetReassembly()
-        {
-            return Reassembly;
-        }
-
         public void SetReassembly(string reassembly)
         {
             this.Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
@@ -58,16 +57,6 @@ namespace ELIZA.NET.Structures
         public void SetReassembly(List<string> reassembly)
         {
             this.Reassembly = reassembly;
-        }
-
-        public bool GetMemorize()
-        {
-            return Memorize;
-        }
-
-        public void SetMemorize(bool memorize)
-        {
-            this.Memorize = memorize;
         }
     }
 }

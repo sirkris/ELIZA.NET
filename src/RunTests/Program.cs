@@ -11,29 +11,23 @@ namespace RunTests
         static void Main(string[] args)
         {
             Workflow workflow;
-            if (args.Length == 0)
+            if (args.Length != 2)
             {
-                Console.WriteLine("Usage: RunTests.exe <test script path> <script source> <script param>");
+                Console.WriteLine("Usage: RunTests.exe <test script path> <script path>");
                 Console.WriteLine();
-                Console.WriteLine(@"Example: RunTests.exe ..\..\..\..\scripts\DOCTOR\tests\doctorTest.json json ..\..\..\..\scripts\DOCTOR\DOCTOR.json");
+                Console.WriteLine(@"Example: RunTests.exe ..\..\..\..\scripts\DOCTOR\tests\doctorTest.json ..\..\..\..\scripts\DOCTOR\DOCTOR.json");
                 Console.WriteLine();
                 Console.WriteLine("Test script path must point to a JSON file with the correct format.");
-                Console.WriteLine("Script source can be one of:  registry (default), json, or api.");
-                Console.WriteLine("If script source is registry, script param arg is ignored.");
-                Console.WriteLine("Otherwise, script param is the local or URL path to the script JSON.");
+                Console.WriteLine("Script path is the path to the script JSON.");
 
                 return;
             }
-            else if (args.Length == 1)
-            {
-                workflow = new Workflow(args[0]);
-            }
             else
             {
-                workflow = new Workflow(args[1], args[0], (args.Count() > 2 ? args[2] : null));
+                workflow = new Workflow(args[0], args[1]);
             }
 
-            Console.WriteLine(workflow.start());
+            Console.WriteLine(workflow.Start());
         }
     }
 }

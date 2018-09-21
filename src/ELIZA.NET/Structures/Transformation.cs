@@ -11,10 +11,10 @@ namespace ELIZA.NET.Structures
     public class Transformation
     {
         [JsonProperty("word")]
-        private string Word = null;
+        public string Word = null;
 
         [JsonProperty("script")]
-        private string Script = null;
+        public string Script = null;
 
         [JsonProperty("aliases")]
         private string AliasesStr = null;
@@ -36,26 +36,6 @@ namespace ELIZA.NET.Structures
         }
 
         public Transformation() { }
-
-        public string GetWord()
-        {
-            return Word;
-        }
-
-        public void SetWord(string word)
-        {
-            this.Word = word;
-        }
-
-        public string GetScript()
-        {
-            return Script;
-        }
-
-        public void SetScript(string script)
-        {
-            this.Script = script;
-        }
 
         public List<string> GetAliases()
         {

@@ -11,16 +11,16 @@ namespace ELIZA.NET.Structures
     public class Pair
     {
         [JsonProperty("word")]
-        private string Word = null;
+        public string Word = null;
 
         [JsonProperty("script")]
-        private string Script = null;
+        public string Script = null;
 
         [JsonProperty("inverse")]
-        private string Inverse = null;
+        public string Inverse = null;
 
         [JsonProperty("bidirectional")]
-        private bool Bidirectional = false;
+        public bool Bidirectional = false;
 
         public Pair(string word, string script, string inverse, bool bidirectional = false)
         {
@@ -31,45 +31,5 @@ namespace ELIZA.NET.Structures
         }
 
         public Pair() { }
-
-        public string GetWord()
-        {
-            return Word;
-        }
-
-        public void SetWord(string word)
-        {
-            this.Word = word;
-        }
-
-        public string GetScript()
-        {
-            return Script;
-        }
-
-        public void SetScript(string script)
-        {
-            this.Script = script;
-        }
-
-        public string GetInverse()
-        {
-            return Inverse;
-        }
-
-        public void SetInverse(string inverse)
-        {
-            this.Inverse = inverse;
-        }
-
-        public bool GetBidirectional()
-        {
-            return Bidirectional;
-        }
-
-        public void SetBidirectional(bool bidirectional)
-        {
-            this.Bidirectional = bidirectional;
-        }
     }
 }
