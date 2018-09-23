@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
@@ -11,7 +9,7 @@ namespace ELIZA.NET.Structures
     public class Rule
     {
         [JsonProperty("decomposition")]
-        private string Decomposition = null;
+        public string Decomposition = null;
 
         [JsonProperty("reassembly")]
         public List<string> Reassembly
@@ -38,16 +36,6 @@ namespace ELIZA.NET.Structures
         }
 
         public Rule() { this.Reassembly = null; }
-
-        public string GetDecomposition()
-        {
-            return Decomposition.Replace("_____", "\\");
-        }
-
-        public void SetDecomposition(string decomposition)
-        {
-            this.Decomposition = decomposition;
-        }
 
         public void SetReassembly(string reassembly)
         {

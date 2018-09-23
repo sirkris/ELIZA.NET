@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ELIZA
 {
@@ -30,9 +26,8 @@ namespace ELIZA
             {
                 userInput = Console.ReadLine();
                 Console.WriteLine(elizaWrapper.Query(userInput));
-            } while (!userInput.Trim().Equals("goodbye", StringComparison.OrdinalIgnoreCase)
-                && !userInput.Trim().Equals("bye", StringComparison.OrdinalIgnoreCase)
-                && !userInput.Trim().Equals("farewell", StringComparison.OrdinalIgnoreCase)
+            } while (userInput.Trim().IndexOf("bye", StringComparison.OrdinalIgnoreCase) < 0
+                && userInput.Trim().IndexOf("farewell", StringComparison.OrdinalIgnoreCase) < 0
                 && !userInput.Trim().Equals("exit", StringComparison.OrdinalIgnoreCase)
                 && !userInput.Trim().Equals("quit", StringComparison.OrdinalIgnoreCase));
         }
