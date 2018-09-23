@@ -3,9 +3,7 @@ using RunTests.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RunTests
 {
@@ -44,7 +42,7 @@ namespace RunTests
 
             foreach (TestCase testCase in TestScript.Test)
             {
-                int retry = (testCase.Expected.Count() * 100);
+                int retry = (testCase.Expected.Count * 100);
                 List<string> replies = new List<string>();
                 do
                 {
@@ -64,10 +62,10 @@ namespace RunTests
                     }
 
                     retry--;
-                } while (replies.Count() < testCase.Expected.Count()
+                } while (replies.Count < testCase.Expected.Count
                     && retry > 0);
 
-                if (replies.Count() == testCase.Expected.Count())
+                if (replies.Count == testCase.Expected.Count)
                 {
                     passed++;
                 }
@@ -81,7 +79,7 @@ namespace RunTests
 
             double runTime = ((DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds - (start.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds) / 1000;
 
-            res += Environment.NewLine + "Executed " + tests.ToString() + " tests on " + TestScript.Test.Count().ToString() + " ELIZA inputs in " 
+            res += Environment.NewLine + "Executed " + tests.ToString() + " tests on " + TestScript.Test.Count.ToString() + " ELIZA inputs in "
                 + runTime.ToString() + " seconds successfully." + Environment.NewLine;
 
             if (errors.Count > 0)
@@ -116,7 +114,7 @@ namespace RunTests
                 }
             }
 
-            res += Environment.NewLine + "Test Cases Passed: " + passed.ToString() + " / " + total.ToString() + " (" + (((double) passed / (double) total) * 100).ToString() + @"%)";
+            res += Environment.NewLine + "Test Cases Passed: " + passed.ToString() + " / " + total.ToString() + " (" + (((double)passed / (double)total) * 100).ToString() + @"%)";
 
             return res;
         }

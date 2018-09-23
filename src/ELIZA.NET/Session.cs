@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ELIZA.NET
 {
@@ -73,8 +72,8 @@ namespace ELIZA.NET
             }
 
             s = s.Trim();
-            
-            if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase ) >= 0
+
+            if (s.IndexOf("bye", StringComparison.OrdinalIgnoreCase) >= 0
                 || s.IndexOf("farewell", StringComparison.OrdinalIgnoreCase) >= 0
                 || s.Equals("exit", StringComparison.OrdinalIgnoreCase)
                 || s.Equals("quit", StringComparison.OrdinalIgnoreCase))
@@ -132,7 +131,7 @@ namespace ELIZA.NET
             string reassembly = LastRule.Reassembly[rand.Next(LastRule.Reassembly.Count())];
 
             // If reassembly string is of the form "GOTO <keyword>" (keyword MUST have a matching decomposition rule!), that keyword's reassembly will be substituted.  --Kris
-            if (reassembly.Length > 5 
+            if (reassembly.Length > 5
                 && reassembly.Substring(0, 5).Equals("GOTO "))
             {
                 if (CheckRule(reassembly.Substring(5)))
@@ -308,11 +307,11 @@ namespace ELIZA.NET
                 // If decomposition rule contains '@' alias, match against all corresponding entries in the synonyms table.  --Kris
                 foreach (Synonym synonym in Script.Synonyms)
                 {
-                    rule.SetDecomposition(rule.GetDecomposition().Replace('@' + synonym.Word, synonym.Word + '|' + String.Join(@"|", synonym.GetAliases().ToArray())));
+                    rule.Decomposition = rule.Decomposition.Replace('@' + synonym.Word, synonym.Word + '|' + String.Join(@"|", synonym.GetAliases().ToArray()));
                 }
 
                 // Match the decomposition rule against the last input and capture matched parts.  --Kris
-                MatchCollection matches = Regex.Matches(LastInput, rule.GetDecomposition(), RegexOptions.IgnoreCase);
+                MatchCollection matches = Regex.Matches(LastInput, rule.Decomposition, RegexOptions.IgnoreCase);
                 if (matches.Count > 0)
                 {
                     this.LastRule = rule;
