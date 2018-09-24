@@ -6,15 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="ELIZA.NET">
-      <HintPath>..\ELIZA.NET\bin\Debug\netcoreapp2.1\ELIZA.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\ELIZA.NET\Resources\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\dist\ELIZA.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 

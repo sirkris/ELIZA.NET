@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <id>ELIZA.NET</id>
+
+        <version>1.1.0</version>
+
+        <authors>Kris Craig</authors>
+
+        <owners>KrisCraig</owners>
+
+        <licenseUrl>https://github.com/sirkris/ELIZA.NET/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/sirkris/ELIZA.NET</projectUrl>
+
+        <iconUrl>https://raw.githubusercontent.com/sirkris/ELIZA.NET/master/ELIZA.gif</iconUrl>
+
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+        <releaseNotes>Migrated to .NET Core 2.1 and various tweaks.</releaseNotes>
+
+        <description>A modern .NET linked library implementation of the classic ELIZA chatbot.</description>
+
+        <copyright>Copyright © 2018 by Kris Craig</copyright>
+
+        <tags>ai eliza bot chatbot chatterbot</tags>
+
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="11.0.2" />
+            <dependency id="System.Security.Permissions" version="4.5.0" />
+        </dependencies>
+    </metadata>
+</package>
