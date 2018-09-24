@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Reference Include="ELIZA.NET">
-      <HintPath>..\ELIZA.NET\bin\Debug\netcoreapp2.1\ELIZA.NET.dll</HintPath>
+      <HintPath>..\..\dist\ELIZA.NET.dll</HintPath>
     </Reference>
   </ItemGroup>
 
