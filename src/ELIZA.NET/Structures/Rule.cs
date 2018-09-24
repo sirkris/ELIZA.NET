@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
@@ -11,13 +9,17 @@ namespace ELIZA.NET.Structures
     public class Rule
     {
         [JsonProperty("decomposition")]
-        private string Decomposition = null;
+        public string Decomposition = null;
 
         [JsonProperty("reassembly")]
-        private List<string> Reassembly = null;
+        public List<string> Reassembly
+        {
+            get;
+            private set;
+        }
 
         [JsonProperty("memorize")]
-        private bool Memorize = false;  // TODO - Implement this feature.  --Kris
+        public bool Memorize = false;  // TODO - Implement this feature.  --Kris
 
         public Rule(string decomposition, string reassembly, bool memorize = false)
         {
@@ -33,22 +35,7 @@ namespace ELIZA.NET.Structures
             this.Memorize = memorize;
         }
 
-        public Rule() { }
-
-        public string GetDecomposition()
-        {
-            return Decomposition.Replace("_____", "\\");
-        }
-
-        public void SetDecomposition(string decomposition)
-        {
-            this.Decomposition = decomposition;
-        }
-
-        public List<string> GetReassembly()
-        {
-            return Reassembly;
-        }
+        public Rule() { this.Reassembly = null; }
 
         public void SetReassembly(string reassembly)
         {
@@ -58,16 +45,6 @@ namespace ELIZA.NET.Structures
         public void SetReassembly(List<string> reassembly)
         {
             this.Reassembly = reassembly;
-        }
-
-        public bool GetMemorize()
-        {
-            return Memorize;
-        }
-
-        public void SetMemorize(bool memorize)
-        {
-            this.Memorize = memorize;
         }
     }
 }

@@ -1,29 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ELIZA.NET
 {
+    /// <summary>
+    /// The main class for ELIZA.NET.
+    /// </summary>
     public class ELIZALib
     {
+        /// <summary>
+        /// Class responsible for deserializing an ELIZA script.
+        /// </summary>
         public ScriptHandler ScriptHandler
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// An instance of this class represents a session with ELIZA.
+        /// </summary>
         public Session Session
         {
             get;
             private set;
         }
 
-        public ELIZALib(bool autoLoad = Constants.DEFAULT_AUTOLOAD, int source = Constants.DEFAULT_SOURCE, string sourceParam = Constants.DEFAULT_SCRIPT)
+        /// <summary>
+        /// Create a new instance of ELIZA.
+        /// </summary>
+        /// <param name="scriptJSON">A JSON string containing the ELIZA script.</param>
+        /// <param name="autoLoad">If true, the ELIZA script will be automatically loaded in the constructor and the session will be initialized.</param>
+        public ELIZALib(string scriptJSON, bool autoLoad = true)
         {
-            this.ScriptHandler = new ScriptHandler(autoLoad, source, sourceParam);
-            this.Session = new Session(ScriptHandler.GetScript());
+            this.ScriptHandler = new ScriptHandler(scriptJSON, autoLoad);
+            this.Session = new Session(ScriptHandler.Script);
         }
 
         /// <summary>

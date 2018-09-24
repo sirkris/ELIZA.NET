@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ELIZA.NET.Structures
 {
@@ -11,10 +9,10 @@ namespace ELIZA.NET.Structures
     public class GenericResponse
     {
         [JsonProperty("response")]
-        private string Response = null;
+        public string Response = null;
 
         [JsonProperty("script")]
-        private string Script = null;
+        public string Script = null;
 
         public GenericResponse(string response, string script)
         {
@@ -24,27 +22,7 @@ namespace ELIZA.NET.Structures
 
         public GenericResponse() { }
 
-        public string GetResponse()
-        {
-            return Response;
-        }
-
-        public void SetResponse(string response)
-        {
-            this.Response = response;
-        }
-
-        public string GetScript()
-        {
-            return Script;
-        }
-
-        public void SetScript(string script)
-        {
-            this.Script = script;
-        }
-
-        public string ToString()
+        public override string ToString()
         {
             return Response;
         }

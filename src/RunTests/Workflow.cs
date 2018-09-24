@@ -3,9 +3,7 @@ using RunTests.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RunTests
 {
@@ -14,33 +12,24 @@ namespace RunTests
         private ELIZAWrapper ElizaWrapper;
         private TestScript TestScript;
 
-        public Workflow(string scriptSource, string testScript, string scriptPath = null)
+        public Workflow(string testScript, string scriptPath)
         {
-            InitializeWorkflow(scriptSource, testScript, scriptPath);
+            InitializeWorkflow(testScript, scriptPath);
         }
 
-        public Workflow(string testScript)
-        {
-            InitializeWorkflow("registry", testScript);
-        }
-
-        private void InitializeWorkflow(string scriptSource, string testScript, string scriptPath = null)
+        private void InitializeWorkflow(string testScript, string scriptPath)
         {
             LoadTestScript(testScript);
-            if (scriptSource.ToLower().Equals("registry"))
-            {
-                scriptPath = TestScript.Script;
-            }
 
-            ElizaWrapper = new ELIZAWrapper(scriptSource, scriptPath);
+            ElizaWrapper = new ELIZAWrapper(scriptPath);
         }
 
-        public void LoadTestScript( string testScript )
+        public void LoadTestScript(string testScript)
         {
             this.TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
         }
 
-        public string start()
+        public string Start()
         {
             string res = "";
 
@@ -53,11 +42,11 @@ namespace RunTests
 
             foreach (TestCase testCase in TestScript.Test)
             {
-                int retry = (testCase.Expected.Count() * 100);
+                int retry = (testCase.Expected.Count * 100);
                 List<string> replies = new List<string>();
                 do
                 {
-                    string reply = ElizaWrapper.query(testCase.Input);
+                    string reply = ElizaWrapper.Query(testCase.Input);
                     if (testCase.Expected.Contains(reply))
                     {
                         if (!replies.Contains(reply))
@@ -73,10 +62,10 @@ namespace RunTests
                     }
 
                     retry--;
-                } while (replies.Count() < testCase.Expected.Count()
+                } while (replies.Count < testCase.Expected.Count
                     && retry > 0);
 
-                if (replies.Count() == testCase.Expected.Count())
+                if (replies.Count == testCase.Expected.Count)
                 {
                     passed++;
                 }
@@ -90,7 +79,7 @@ namespace RunTests
 
             double runTime = ((DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds - (start.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds) / 1000;
 
-            res += Environment.NewLine + "Executed " + tests.ToString() + " tests on " + TestScript.Test.Count().ToString() + " ELIZA inputs in " 
+            res += Environment.NewLine + "Executed " + tests.ToString() + " tests on " + TestScript.Test.Count.ToString() + " ELIZA inputs in "
                 + runTime.ToString() + " seconds successfully." + Environment.NewLine;
 
             if (errors.Count > 0)
@@ -125,7 +114,7 @@ namespace RunTests
                 }
             }
 
-            res += Environment.NewLine + "Test Cases Passed: " + passed.ToString() + " / " + total.ToString() + " (" + (((double) passed / (double) total) * 100).ToString() + @"%)";
+            res += Environment.NewLine + "Test Cases Passed: " + passed.ToString() + " / " + total.ToString() + " (" + (((double)passed / (double)total) * 100).ToString() + @"%)";
 
             return res;
         }
