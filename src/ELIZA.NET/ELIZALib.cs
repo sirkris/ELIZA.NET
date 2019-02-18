@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ELIZA.NET
+﻿namespace ELIZA.NET
 {
     /// <summary>
     /// The main class for ELIZA.NET.

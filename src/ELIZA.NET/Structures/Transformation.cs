@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {

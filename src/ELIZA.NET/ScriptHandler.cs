@@ -1,8 +1,5 @@
 ﻿using ELIZA.NET.Structures;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ELIZA.NET
 {
