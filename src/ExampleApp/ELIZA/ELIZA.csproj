@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ELIZA.NET">
-      <HintPath>..\..\..\dist\ELIZA.NET.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\ELIZA.NET\ELIZA.NET.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -22,10 +21,10 @@ namespace ELIZA.NET.Structures
 
         public Keyword(string word, string script, int rank, List<Rule> rules)
         {
-            this.Word = word;
-            this.Script = script;
-            this.Rank = rank;
-            this.Rules = rules;
+            Word = word;
+            Script = script;
+            Rank = rank;
+            Rules = rules;
         }
 
         public Keyword() { }

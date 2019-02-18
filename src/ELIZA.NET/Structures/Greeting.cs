@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -16,8 +14,8 @@ namespace ELIZA.NET.Structures
 
         public Greeting(string greeting, string script)
         {
-            this.GreetingText = greeting;
-            this.Script = script;
+            GreetingText = greeting;
+            Script = script;
         }
 
         public Greeting() { }

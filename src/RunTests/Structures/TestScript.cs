@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RunTests.Structures
 {
@@ -32,12 +31,12 @@ namespace RunTests.Structures
 
         public void SetScript(string script)
         {
-            this.Script = script;
+            Script = script;
         }
 
         public void SetTest(List<TestCase> test)
         {
-            this.Test = test;
+            Test = test;
         }
     }
 }

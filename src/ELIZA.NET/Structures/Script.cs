@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -39,38 +38,38 @@ namespace ELIZA.NET.Structures
         public Script(List<GenericResponse> genericResponses, List<Goodbye> goodbyes, List<Greeting> greetings,
             List<Pair> pairs, List<Synonym> synonyms, List<Transformation> transformations, Dictionary<string, Keyword> keywords)
         {
-            this.GenericResponses = genericResponses;
-            this.Goodbyes = goodbyes;
-            this.Greetings = greetings;
-            this.Pairs = pairs;
-            this.Synonyms = synonyms;
-            this.Transformations = transformations;
-            this.Keywords = keywords;
+            GenericResponses = genericResponses;
+            Goodbyes = goodbyes;
+            Greetings = greetings;
+            Pairs = pairs;
+            Synonyms = synonyms;
+            Transformations = transformations;
+            Keywords = keywords;
 
             // TODO - Modify structure so that script name is top-level in JSON (and remove redundant entries).  --Kris
-            this.scriptName = this.GenericResponses[0].Script;
+            scriptName = GenericResponses[0].Script;
 
-            this.rand = new Random();
+            rand = new Random();
         }
 
         public Script(List<GenericResponse> genericResponses, List<Goodbye> goodbyes, List<Greeting> greetings,
             List<Pair> pairs, List<Synonym> synonyms, List<Transformation> transformations, List<Keyword> keywords)
         {
-            this.GenericResponses = genericResponses;
-            this.Goodbyes = goodbyes;
-            this.Greetings = greetings;
-            this.Pairs = pairs;
-            this.Synonyms = synonyms;
-            this.Transformations = transformations;
-            this.Keywords = IndexKeywords(keywords);
+            GenericResponses = genericResponses;
+            Goodbyes = goodbyes;
+            Greetings = greetings;
+            Pairs = pairs;
+            Synonyms = synonyms;
+            Transformations = transformations;
+            Keywords = IndexKeywords(keywords);
 
             // TODO - Modify structure so that script name is top-level in JSON (and remove redundant entries).  --Kris
-            this.scriptName = this.GenericResponses[0].Script;
+            scriptName = GenericResponses[0].Script;
 
-            this.rand = new Random();
+            rand = new Random();
         }
 
-        public Script() { this.Keywords = null; }
+        public Script() { Keywords = null; }
 
         private Dictionary<string, Keyword> IndexKeywords(List<Keyword> keywords)
         {
@@ -115,12 +114,12 @@ namespace ELIZA.NET.Structures
 
         public void SetKeywords(Dictionary<string, Keyword> keywords)
         {
-            this.Keywords = keywords;
+            Keywords = keywords;
         }
 
         public void SetKeywords(List<Keyword> keywords)
         {
-            this.Keywords = IndexKeywords(keywords);
+            Keywords = IndexKeywords(keywords);
         }
     }
 }
