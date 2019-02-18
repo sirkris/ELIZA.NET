@@ -35,17 +35,17 @@ namespace RunTests.Structures
 
         public void SetType(string type)
         {
-            this.Type = type;
+            Type = type;
         }
 
         public void SetResults(List<string> results)
         {
-            this.Results = results;
+            Results = results;
         }
 
         public void SetTestCase(TestCase testCase)
         {
-            this.TestCase = testCase;
+            TestCase = testCase;
         }
     }
 }

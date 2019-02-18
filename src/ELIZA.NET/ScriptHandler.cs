@@ -16,7 +16,7 @@ namespace ELIZA.NET
 
         public ScriptHandler(string scriptJSON, bool autoLoad = true)
         {
-            this.Script = null;
+            Script = null;
 
             if (autoLoad)
             {
@@ -24,11 +24,11 @@ namespace ELIZA.NET
             }
         }
 
-        public ScriptHandler() { this.Script = null; }
+        public ScriptHandler() { Script = null; }
 
         public void LoadFromJSONData(string json)
         {
-            this.Script = JsonConvert.DeserializeObject<Script>(json);
+            Script = JsonConvert.DeserializeObject<Script>(json);
         }
     }
 }

@@ -30,12 +30,12 @@ namespace RunTests.Structures
 
         public void SetInput(string input)
         {
-            this.Input = input;
+            Input = input;
         }
 
         public void SetExpected(List<string> expected)
         {
-            this.Expected = expected;
+            Expected = expected;
         }
     }
 }

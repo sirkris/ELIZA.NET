@@ -22,10 +22,10 @@ namespace ELIZA.NET.Structures
 
         public Pair(string word, string script, string inverse, bool bidirectional = false)
         {
-            this.Word = word;
-            this.Script = script;
-            this.Inverse = inverse;
-            this.Bidirectional = bidirectional;
+            Word = word;
+            Script = script;
+            Inverse = inverse;
+            Bidirectional = bidirectional;
         }
 
         public Pair() { }

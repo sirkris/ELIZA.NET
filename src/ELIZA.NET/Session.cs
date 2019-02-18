@@ -47,7 +47,7 @@ namespace ELIZA.NET
 
             ApplyDuplications();
 
-            this.rand = new Random();
+            rand = new Random();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace ELIZA.NET
         /// <returns>A string representing ELIZA's response to your query.</returns>
         public string GetResponse(string s)
         {
-            if (String.IsNullOrWhiteSpace(s))
+            if (string.IsNullOrWhiteSpace(s))
             {
                 return (History.Count > 0 ? GetGenericResponse() : GetGreeting());
             }
@@ -250,7 +250,7 @@ namespace ELIZA.NET
             }
 
             // Remove all punctuation/symbols.  --Kris
-            this.LastInput = Regex.Replace(s, @"[^\da-z ]", "", RegexOptions.IgnoreCase);
+            LastInput = Regex.Replace(s, @"[^\da-z ]", "", RegexOptions.IgnoreCase);
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace ELIZA.NET
         /// </summary>
         private void BuildKeyStack()
         {
-            this.LastKeyStack = new SortedDictionary<int, List<string>>();
+            LastKeyStack = new SortedDictionary<int, List<string>>();
             foreach (string word in LastInput.Split(' '))
             {
                 string wordKey = word.ToLower();
@@ -307,15 +307,15 @@ namespace ELIZA.NET
                 // If decomposition rule contains '@' alias, match against all corresponding entries in the synonyms table.  --Kris
                 foreach (Synonym synonym in Script.Synonyms)
                 {
-                    rule.Decomposition = rule.Decomposition.Replace('@' + synonym.Word, synonym.Word + '|' + String.Join(@"|", synonym.GetAliases().ToArray()));
+                    rule.Decomposition = rule.Decomposition.Replace('@' + synonym.Word, synonym.Word + '|' + string.Join(@"|", synonym.GetAliases().ToArray()));
                 }
 
                 // Match the decomposition rule against the last input and capture matched parts.  --Kris
                 MatchCollection matches = Regex.Matches(LastInput, rule.Decomposition, RegexOptions.IgnoreCase);
                 if (matches.Count > 0)
                 {
-                    this.LastRule = rule;
-                    this.LastParts = matches;
+                    LastRule = rule;
+                    LastParts = matches;
                     return true;
                 }
             }
@@ -356,7 +356,7 @@ namespace ELIZA.NET
         /// <param name="script">A valid Script object.</param>
         public void SetScript(Script script)
         {
-            this.Script = script;
+            Script = script;
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace ELIZA.NET
         /// </summary>
         public void ResetHistory()
         {
-            this.History = new List<string>();
+            History = new List<string>();
         }
     }
 }

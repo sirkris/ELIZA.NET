@@ -16,8 +16,8 @@ namespace ELIZA.NET.Structures
 
         public Goodbye(string message, string script)
         {
-            this.Message = message;
-            this.Script = script;
+            Message = message;
+            Script = script;
         }
 
         public Goodbye() { }

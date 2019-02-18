@@ -32,12 +32,12 @@ namespace RunTests.Structures
 
         public void SetScript(string script)
         {
-            this.Script = script;
+            Script = script;
         }
 
         public void SetTest(List<TestCase> test)
         {
-            this.Test = test;
+            Test = test;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace RunTests
 
         public void LoadTestScript(string testScript)
         {
-            this.TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
+            TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
         }
 
         public string Start()
