@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -23,28 +22,28 @@ namespace ELIZA.NET.Structures
 
         public Rule(string decomposition, string reassembly, bool memorize = false)
         {
-            this.Decomposition = decomposition;
-            this.Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
-            this.Memorize = memorize;
+            Decomposition = decomposition;
+            Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
+            Memorize = memorize;
         }
 
         public Rule(string decomposition, List<string> reassembly, bool memorize = false)
         {
-            this.Decomposition = decomposition;
-            this.Reassembly = reassembly;
-            this.Memorize = memorize;
+            Decomposition = decomposition;
+            Reassembly = reassembly;
+            Memorize = memorize;
         }
 
-        public Rule() { this.Reassembly = null; }
+        public Rule() { Reassembly = null; }
 
         public void SetReassembly(string reassembly)
         {
-            this.Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
+            Reassembly = JsonConvert.DeserializeObject<List<string>>(reassembly);
         }
 
         public void SetReassembly(List<string> reassembly)
         {
-            this.Reassembly = reassembly;
+            Reassembly = reassembly;
         }
     }
 }

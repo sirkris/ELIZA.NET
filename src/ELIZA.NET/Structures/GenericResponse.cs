@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -16,8 +14,8 @@ namespace ELIZA.NET.Structures
 
         public GenericResponse(string response, string script)
         {
-            this.Response = response;
-            this.Script = script;
+            Response = response;
+            Script = script;
         }
 
         public GenericResponse() { }

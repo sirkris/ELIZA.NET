@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ELIZA.NET
+﻿namespace ELIZA.NET
 {
     /// <summary>
     /// The main class for ELIZA.NET.
@@ -32,8 +30,8 @@ namespace ELIZA.NET
         /// <param name="autoLoad">If true, the ELIZA script will be automatically loaded in the constructor and the session will be initialized.</param>
         public ELIZALib(string scriptJSON, bool autoLoad = true)
         {
-            this.ScriptHandler = new ScriptHandler(scriptJSON, autoLoad);
-            this.Session = new Session(ScriptHandler.Script);
+            ScriptHandler = new ScriptHandler(scriptJSON, autoLoad);
+            Session = new Session(ScriptHandler.Script);
         }
 
         /// <summary>
@@ -51,7 +49,7 @@ namespace ELIZA.NET
         /// <param name="scriptHandler">A valid ScriptHandler object.</param>
         public void SetScriptHandler(ScriptHandler scriptHandler)
         {
-            this.ScriptHandler = scriptHandler;
+            ScriptHandler = scriptHandler;
         }
 
         /// <summary>
@@ -60,7 +58,7 @@ namespace ELIZA.NET
         /// <param name="session">A valid Session object.</param>
         public void SetSession(Session session)
         {
-            this.Session = session;
+            Session = session;
         }
     }
 }

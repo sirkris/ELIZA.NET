@@ -3,7 +3,6 @@ using RunTests.Structures;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace RunTests
 {
@@ -26,7 +25,7 @@ namespace RunTests
 
         public void LoadTestScript(string testScript)
         {
-            this.TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
+            TestScript = JsonConvert.DeserializeObject<Structures.TestScript>(File.ReadAllText(testScript));
         }
 
         public string Start()

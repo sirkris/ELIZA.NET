@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Text;
 
 namespace ELIZA.NET.Structures
 {
@@ -22,16 +21,16 @@ namespace ELIZA.NET.Structures
 
         public Transformation(string word, string script, string aliases)
         {
-            this.Word = word;
-            this.Script = script;
-            this.Aliases = aliases.Split(',').ToList();
+            Word = word;
+            Script = script;
+            Aliases = aliases.Split(',').ToList();
         }
 
         public Transformation(string word, string script, List<string> aliases)
         {
-            this.Word = word;
-            this.Script = script;
-            this.Aliases = aliases;
+            Word = word;
+            Script = script;
+            Aliases = aliases;
         }
 
         public Transformation() { }
@@ -41,7 +40,7 @@ namespace ELIZA.NET.Structures
             if (AliasesStr != null)
             {
                 SetAliases(AliasesStr);
-                this.AliasesStr = null;
+                AliasesStr = null;
             }
 
             return Aliases;
@@ -49,12 +48,12 @@ namespace ELIZA.NET.Structures
 
         public void SetAliases(string aliases)
         {
-            this.Aliases = aliases.Split(',').ToList();
+            Aliases = aliases.Split(',').ToList();
         }
 
         public void SetAliases(List<string> aliases)
         {
-            this.Aliases = aliases;
+            Aliases = aliases;
         }
     }
 }
